@@ -1,5 +1,5 @@
-config.yml
-vendor/
-.idea/
-contribs/
+/config.yml
+/vendor/
+/.idea/
+/contribs/
 

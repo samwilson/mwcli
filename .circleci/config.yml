@@ -1,0 +1,11 @@
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.2
+    steps:
+      - checkout
+      - run: sudo composer self-update
+      - run: composer install
+      - run: composer test
+
+version: 2
