@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<ruleset name="wsexport">
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+		<exclude name="Generic.Files.LineLength.TooLong" />
+		<exclude name="MediaWiki.Commenting.FunctionAnnotations" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamComment" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamName" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamTag" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.MissingReturn" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.Missing.Protected" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.Missing.Public" />
+		<exclude name="MediaWiki.Commenting.PhpunitAnnotations" />
+		<exclude name="MediaWiki.NamingConventions.PrefixedGlobalFunctions.wfPrefix" />
+		<exclude name="MediaWiki.NamingConventions.ValidGlobalName" />
+		<exclude name="MediaWiki.PHP70Features.ScalarTypeHintUsage" />
+		<exclude name="MediaWiki.PHP71Features.VoidReturnType" />
+		<exclude name="MediaWiki.PHP71Features.NullableType.NotAllowed" />
+		<exclude name="MediaWiki.Usage.ForbiddenFunctions" />
+		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
+	</rule>
+
+	<file>.</file>
+	<exclude-pattern>temp/</exclude-pattern>
+	<exclude-pattern>vendor/</exclude-pattern>
+	<exclude-pattern>config.php</exclude-pattern>
+</ruleset>

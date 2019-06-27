@@ -1,0 +1,45 @@
+{
+  "name": "samwilson/mwcli",
+  "description": "A Command Line Interface for managing MediaWiki installations.",
+  "keywords": [
+    "cli",
+    "mediawiki"
+  ],
+  "homepage": "https://www.mediawiki.org/wiki/...",
+  "license": "MIT",
+  "bin": [
+    "bin/mwcli"
+  ],
+  "autoload": {
+    "psr-4": {
+      "Samwilson\\MediaWikiCLI\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Samwilson\\MediaWikiCLI\\Test\\": "tests/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "require": {
+    "addwiki/mediawiki-api-base": "^2.4",
+    "krinkle/intuition": "^2.0",
+    "symfony/console": "^4.3",
+    "symfony/yaml": "^4.3"
+  },
+  "require-dev": {
+    "jakub-onderka/php-parallel-lint": "^1.0",
+    "mediawiki/mediawiki-codesniffer": "^26.0",
+    "phpunit/phpunit": "^8.2",
+    "symfony/var-dumper": "^4.3"
+  },
+  "scripts": {
+    "test": [
+      "composer validate",
+      "phpcs -s .",
+      "minus-x check ."
+    ]
+  }
+}

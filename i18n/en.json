@@ -1,0 +1,10 @@
+{
+  "using-config": "Using config file $1",
+
+  "sites-add-ask-url": "Enter any URL of the wiki you want to add:",
+  "sites-add-added": "Site added: $1 — $2",
+
+  "no-wiki-specified": "Please specify a wiki with the `--wiki` option.",
+
+  "export-contribs-title": "Exporting title $1"
+}
