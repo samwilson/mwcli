@@ -23,13 +23,7 @@ abstract class CommandBase extends Command {
 		$this->intuition = new Intuition( 'mwcli' );
 		$this->intuition->registerDomain( 'mwcli', dirname( __DIR__, 2 ) . '/i18n' );
 
-		// Use the current working directory for the config file,
-		// but that can fail on some systems so we fall back to the script's directory.
-		$configDir = getcwd();
-		if ( false === $configDir ) {
-			$configDir = dirname( __DIR__, 2 );
-		}
-		$default = rtrim( $configDir, DIRECTORY_SEPARATOR ) . '/config.yml';
+		$default = $this->getConfigDir() . 'config.yml';
 		$this->addOption( 'config', 'c', InputOption::VALUE_OPTIONAL, $this->msg( 'option-config-desc' ), $default );
 	}
 
@@ -58,6 +52,19 @@ abstract class CommandBase extends Command {
 	}
 
 	/**
+	 * @return string The full filesystem path to the directory containing config.yml, always with a trailing slash.
+	 */
+	protected function getConfigDir(): string {
+		// Use the current working directory for the config file,
+		// but that can fail on some systems so we fall back to the script's directory.
+		$configDir = getcwd();
+		if ( false === $configDir ) {
+			$configDir = dirname( __DIR__, 2 );
+		}
+		return rtrim( $configDir, DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR;
+	}
+
+	/**
 	 * @param InputInterface $input
 	 * @return mixed[][]
 	 */
@@ -69,7 +76,6 @@ abstract class CommandBase extends Command {
 		}
 		$this->io->block( $this->msg( 'using-config', [ $configPath ] ) );
 		$config = Yaml::parseFile( $configPath );
-		$config['config_path'] = $configPath;
 		return $config;
 	}
 

@@ -18,7 +18,7 @@ class ExportContribsCommand extends CommandBase {
 		$this->addOption( 'wiki', 'w', InputOption::VALUE_REQUIRED, $this->msg( 'option-wiki-desc' ) );
 		$this->addOption( 'user', 'u', InputOption::VALUE_REQUIRED, $this->msg( 'option-user-desc' ) );
 		$this->addOption( 'dest', 'd', InputOption::VALUE_REQUIRED, $this->msg( 'option-dest-desc' ),
-			dirname( __DIR__, 2 ) . '/contribs' );
+			$this->getConfigDir() . 'contribs' );
 	}
 
 	public function execute( InputInterface $input, OutputInterface $output ) {

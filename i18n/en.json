@@ -1,6 +1,7 @@
 {
   "using-config": "Using config file $1",
 
+  "no-sites-found": "No sites found. Please use the sites:add command to add one.",
   "sites-add-ask-url": "Enter any URL of the wiki you want to add:",
   "sites-add-added": "Site added: $1 — $2",
 

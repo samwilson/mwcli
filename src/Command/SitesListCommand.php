@@ -16,6 +16,10 @@ class SitesListCommand extends CommandBase {
 	public function execute( InputInterface $input, OutputInterface $output ) {
 		parent::execute( $input, $output );
 		$config = $this->getConfig( $input );
+		if ( !isset( $config['sites'] ) ) {
+			$this->io->block( $this->msg( 'no-sites-found' ) );
+			return 0;
+		}
 		$headers = [ 'ID', 'Name', 'API' ];
 		$rows = [];
 		foreach ( $config['sites'] as $site ) {
