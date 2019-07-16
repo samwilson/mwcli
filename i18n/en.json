@@ -1,11 +1,16 @@
 {
   "using-config": "Using config file $1",
+  "option-config-desc": "Path of the Yaml config file to use.",
 
-  "no-sites-found": "No sites found. Please use the sites:add command to add one.",
+  "no-sites-found": "No sites found. Please use the <info>sites:add</info> command to add one.",
   "sites-add-ask-url": "Enter any URL of the wiki you want to add:",
   "sites-add-added": "Site added: $1 — $2",
 
+  "option-wiki-desc": "The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.",
   "no-wiki-specified": "Please specify a wiki with the `--wiki` option.",
 
-  "export-contribs-title": "Exporting title $1"
+  "option-dest-desc": "The destination directory for exported files.",
+  "option-user-desc": "Export contributions of this username.",
+  "export-contribs-title": "Exporting title $1",
+  "option-only-author-desc": "Export only where the given user is the original author of a page."
 }

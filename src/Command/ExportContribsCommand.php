@@ -19,6 +19,7 @@ class ExportContribsCommand extends CommandBase {
 		$this->addOption( 'user', 'u', InputOption::VALUE_REQUIRED, $this->msg( 'option-user-desc' ) );
 		$this->addOption( 'dest', 'd', InputOption::VALUE_REQUIRED, $this->msg( 'option-dest-desc' ),
 			$this->getConfigDir() . 'contribs' );
+		$this->addOption( 'only-author', 'o', InputOption::VALUE_NONE, $this->msg( 'option-only-author-desc' ) );
 	}
 
 	public function execute( InputInterface $input, OutputInterface $output ) {
@@ -57,15 +58,21 @@ class ExportContribsCommand extends CommandBase {
 				$continue = false;
 			}
 			$destDirBase = $input->getOption( 'dest' );
-			$this->getPageOfContribs( $site, $destDirBase, $contribs, $api );
+			$onlyAuthor = $input->getOption( 'only-author' );
+			$this->getPageOfContribs( $site, $destDirBase, $contribs, $api, $onlyAuthor );
 		}
 		return 0;
 	}
 
-	public function getPageOfContribs( $site, $destDirBase, $contribs, MediawikiApi $api ) {
+	public function getPageOfContribs( $site, $destDirBase, $contribs, MediawikiApi $api, bool $onlyAuthor ) {
 		$client = new Client();
 		$requests = [];
 		foreach ( $contribs['query']['usercontribs'] as $contrib ) {
+			// See if we're only getting author revisions.
+			if ( $onlyAuthor && $contrib['parentid'] > 0 ) {
+				continue;
+			}
+
 			// Figure out namespace name.
 			$firstColon = strpos( $contrib['title'], ':' );
 			$namespace = $firstColon ? substr( $contrib['title'], 0, $firstColon ) : '(main)';
@@ -88,14 +95,18 @@ class ExportContribsCommand extends CommandBase {
 			if ( $namespace === 'File' ) {
 				$imageInfoRequest = FluentRequest::factory()->setAction( 'query' )
 					->setParam( 'prop', 'imageinfo' )
-					->setParam( 'iiprop', 'url' )
+					->setParam( 'iiprop', 'url|sha1' )
 					->setParam( 'pageids', $contrib['pageid'] );
 				$imageInfoResponse = $api->getRequest( $imageInfoRequest );
 				$imageInfo = $imageInfoResponse['query']['pages'][$contrib['pageid']];
+				// Not all file pages have images (e.g. redirects).
 				if ( isset( $imageInfo['imageinfo'] ) ) {
-					// Not all file pages have images (e.g. redirects).
 					$fileUrl = $imageInfo['imageinfo'][0]['url'];
 					$destFile = $destDirBase . '/' . $site['id'] . '/files/' . basename( $fileUrl );
+					// See if the file already exists and is of the right version.
+					if ( is_file( $destFile ) && sha1_file( $destFile ) === $imageInfo['imageinfo'][0]['sha1'] ) {
+						continue;
+					}
 					if ( !is_dir( dirname( $destFile ) ) ) {
 						$this->io->writeln( 'Creating directory ' . dirname( $destFile ) );
 						mkdir( dirname( $destFile ), 0755, true );
