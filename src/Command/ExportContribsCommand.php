@@ -87,7 +87,7 @@ class ExportContribsCommand extends CommandBase {
 			}
 			$uri = str_replace( 'api.php', 'index.php', $site['api_url'] )
 				. '?title=Special:Export&pages=' . $contrib['title'] . '&history=1';
-			$requests[$namespace . ':' . $pageTitle] = function () use ( $client, $uri, $xmlFile ) {
+			$requests['XML  -- ' . $namespace . ':' . $pageTitle] = function () use ( $client, $uri, $xmlFile ) {
 				return $client->postAsync( $uri, [ 'sink' => $xmlFile ] );
 			};
 
@@ -111,7 +111,7 @@ class ExportContribsCommand extends CommandBase {
 						$this->io->writeln( 'Creating directory ' . dirname( $destFile ) );
 						mkdir( dirname( $destFile ), 0755, true );
 					}
-					$requests[$namespace . ':' . $pageTitle] = function () use ( $client, $fileUrl, $destFile ) {
+					$requests['File -- ' . $namespace . ':' . $pageTitle] = function () use ( $client, $fileUrl, $destFile ) {
 						return $client->getAsync( $fileUrl, [ 'sink' => $destFile ] );
 					};
 				}
