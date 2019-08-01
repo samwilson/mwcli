@@ -26,18 +26,12 @@ class SitesAddCommand extends CommandBase {
 		$siteinfoReq = FluentRequest::factory()->setAction( 'query' )->setParam( 'meta', 'siteinfo' );
 		$siteInfo = $api->getRequest( $siteinfoReq );
 
-		$config = $this->getConfig( $input );
-		if ( !isset( $config['sites'] ) ) {
-			$config['sites'] = [];
-		}
 		$newSite = [
-			'id' => $siteInfo['query']['general']['wikiid'],
 			'name' => $siteInfo['query']['general']['sitename'],
 			'main_page_url' => $siteInfo['query']['general']['base'],
 			'api_url' => $api->getApiUrl(),
 		];
-		$config['sites'][] = $newSite;
-		$this->saveConfig( $input, $config );
+		$this->setSite( $input, $siteInfo['query']['general']['wikiid'], $newSite );
 
 		$this->io->block( $this->msg( 'sites-add-added', [ $newSite['name'], $newSite['main_page_url'] ] ) );
 	}

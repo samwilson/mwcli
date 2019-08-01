@@ -24,9 +24,11 @@
     "sort-packages": true
   },
   "require": {
+    "addwiki/mediawiki-api": "^0.7.2",
     "addwiki/mediawiki-api-base": "^2.4",
     "krinkle/intuition": "^2.0",
     "symfony/console": "^4.3",
+    "symfony/process": "^4.3",
     "symfony/yaml": "^4.3"
   },
   "require-dev": {
@@ -40,7 +42,8 @@
     "test": [
       "composer validate",
       "phpcs -s .",
-      "minus-x check ."
+      "minus-x check .",
+      "phpunit"
     ]
   }
 }
