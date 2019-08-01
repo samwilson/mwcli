@@ -22,9 +22,9 @@ class SitesListCommand extends CommandBase {
 		}
 		$headers = [ 'ID', 'Name', 'API' ];
 		$rows = [];
-		foreach ( $config['sites'] as $site ) {
+		foreach ( $config['sites'] as $siteId => $site ) {
 			$rows[] = [
-				$site['id'],
+				$siteId,
 				$site['name'],
 				$site['api_url']
 			];

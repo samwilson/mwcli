@@ -27,24 +27,12 @@ class ExportContribsCommand extends CommandBase {
 		if ( $ret ) {
 			return $ret;
 		}
-		$config = $this->getConfig( $input );
-
-		$wiki = $input->getOption( 'wiki' );
-
-		$site = false;
-		if ( isset( $config['sites'] ) ) {
-			foreach ( $config['sites'] as $i => $s ) {
-				if ( $s['id'] === $wiki ) {
-					$site = $s;
-				}
-			}
-		}
+		$site = $this->getSite( $input );
 		if ( !$site ) {
-			$this->io->warning( $this->msg( 'sites-auth-sitenotfound' ) );
 			return 1;
 		}
 
-		$api = MediawikiApi::newFromPage( $site['api_url'] );
+		$api = MediawikiApi::newFromApiEndpoint( $site['api_url'] );
 		$continue = true;
 		$siteinfoReq = FluentRequest::factory()->setAction( 'query' )
 			->setParam( 'list', 'usercontribs' )

@@ -8,6 +8,7 @@ use Samwilson\MediaWikiCLI\Command\ExportContribsCommand;
 use Samwilson\MediaWikiCLI\Command\SitesAddCommand;
 use Samwilson\MediaWikiCLI\Command\SitesListCommand;
 use Samwilson\MediaWikiCLI\Command\SitesRemoveCommand;
+use Samwilson\MediaWikiCLI\Command\UploadCommand;
 use Symfony\Component\Console\Application;
 
 $application = new Application();
@@ -16,4 +17,5 @@ $application->add(new SitesListCommand());
 $application->add(new SitesRemoveCommand());
 $application->add(new AuthCommand());
 $application->add(new ExportContribsCommand());
+$application->add(new UploadCommand());
 $application->run();

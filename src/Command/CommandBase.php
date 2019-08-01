@@ -3,6 +3,8 @@
 namespace Samwilson\MediaWikiCLI\Command;
 
 use Krinkle\Intuition\Intuition;
+use Mediawiki\Api\ApiUser;
+use Mediawiki\Api\MediawikiApi;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -88,5 +90,60 @@ abstract class CommandBase extends Command {
 		$configPath = $input->getOption( 'config' );
 		file_put_contents( $configPath, Yaml::dump( $config ) );
 		$this->io->success( $this->msg( 'saved-config', [ $configPath ] ) );
+	}
+
+	/**
+	 * @param InputInterface $input
+	 * @return string[]|bool Site info, or false if none found.
+	 */
+	public function getSite( InputInterface $input ) {
+		$config = $this->getConfig( $input );
+		$wiki = $input->getOption( 'wiki' );
+		$site = false;
+		if ( isset( $config['sites'] ) ) {
+			foreach ( $config['sites'] as $siteId => $s ) {
+				if ( $siteId === $wiki ) {
+					$site = $s;
+				}
+			}
+		}
+		if ( !$site ) {
+			$this->io->warning( $this->msg( 'sites-auth-sitenotfound' ) );
+		}
+		return $site;
+	}
+
+	/**
+	 * @param InputInterface $input
+	 * @param string $siteName
+	 * @param array $site
+	 */
+	public function setSite( InputInterface $input, string $siteName, array $site ) {
+		$config = $this->getConfig( $input );
+		if ( !isset( $config['sites'] ) ) {
+			$config['sites'] = [];
+		}
+		$config['sites'][$siteName] = $site;
+		$this->saveConfig( $input, $config );
+	}
+
+	/**
+	 * Log the user in to the given site. If the site doesn't have requisite authentication details, ask for them.
+	 */
+	public function login( InputInterface $input, MediawikiApi $api ) {
+		$siteName = $input->getOption( 'wiki' );
+		$site = $this->getSite( $input );
+		if ( !isset( $site['username'] ) ) {
+			$site['username'] = $this->io->ask( $this->msg( 'ask-login-username' ) );
+			$this->setSite( $input, $siteName, $site );
+		}
+		if ( !isset( $site['password'] ) ) {
+			$site['password'] = $this->io->askHidden( $this->msg( 'ask-login-password' ) );
+			$this->setSite( $input, $siteName, $site );
+		}
+
+		// Try to log in.
+		$site = $this->getSite( $input );
+		return $api->login( new ApiUser( $site['username'], $site['password'] ) );
 	}
 }

@@ -1,6 +1,7 @@
 {
   "using-config": "Using config file $1",
   "option-config-desc": "Path of the Yaml config file to use.",
+  "saved-config": "Configuration file saved.",
 
   "no-sites-found": "No sites found. Please use the <info>sites:add</info> command to add one.",
   "sites-add-ask-url": "Enter any URL of the wiki you want to add:",
@@ -12,5 +13,14 @@
   "option-dest-desc": "The destination directory for exported files.",
   "option-user-desc": "Export contributions of this username.",
   "export-contribs-title": "Exporting title $1",
-  "option-only-author-desc": "Export only where the given user is the original author of a page."
+  "option-only-author-desc": "Export only where the given user is the original author of a page.",
+
+  "arg-files-desc": "Filenames of files to upload.",
+  "ask-login-username": "Enter your bot username (e.g. YourName@mwcli):",
+  "ask-login-password": "Enter your bot password:",
+  "not-a-file": "Unable to upload non-file: $1",
+  "option-comment-desc": "Revision comment.",
+  "file-exists": "File already exists: $1",
+  "filename-exists": "Filename already in use: $1",
+  "file-uploaded-successfully": "File uploaded successfully: $1"
 }
