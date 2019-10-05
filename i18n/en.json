@@ -6,6 +6,7 @@
   "no-sites-found": "No sites found. Please use the <info>sites:add</info> command to add one.",
   "sites-add-ask-url": "Enter any URL of the wiki you want to add:",
   "sites-add-added": "Site added: $1 — $2",
+  "sites-auth-sitenotfound": "Site '$1' not found in config file $2",
 
   "option-wiki-desc": "The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.",
   "no-wiki-specified": "Please specify a wiki with the `--wiki` option.",
