@@ -9,10 +9,11 @@
   "sites-auth-sitenotfound": "Site '$1' not found in config file $2",
 
   "option-wiki-desc": "The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.",
-  "no-wiki-specified": "Please specify a wiki with the `--wiki` option.",
+  "option-wiki-missing": "Please specify a wiki with the `--wiki` option.",
 
   "option-dest-desc": "The destination directory for exported files.",
   "option-user-desc": "Export contributions of this username.",
+  "option-user-missing": "Please specify a user with the `--user` option.",
   "export-contribs-title": "Exporting title $1",
   "option-only-author-desc": "Export only where the given user is the original author of a page.",
 
