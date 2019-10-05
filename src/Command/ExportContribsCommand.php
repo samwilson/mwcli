@@ -32,11 +32,17 @@ class ExportContribsCommand extends CommandBase {
 			return 1;
 		}
 
+		$user = $input->getOption( 'user' );
+		if ( !$user ) {
+			$this->io->error( $this->msg( 'option-user-missing' ) );
+			return 1;
+		}
+
 		$api = MediawikiApi::newFromApiEndpoint( $site['api_url'] );
 		$continue = true;
 		$siteinfoReq = FluentRequest::factory()->setAction( 'query' )
 			->setParam( 'list', 'usercontribs' )
-			->setParam( 'ucuser', $input->getOption( 'user' ) );
+			->setParam( 'ucuser', $user );
 		while ( $continue ) {
 			$contribs = $api->getRequest( $siteinfoReq );
 			if ( isset( $contribs['continue']['uccontinue'] ) ) {

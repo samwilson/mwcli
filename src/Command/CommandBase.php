@@ -34,7 +34,7 @@ abstract class CommandBase extends Command {
 
 		// 'wiki' is a common option for many commands, so we can validate it here.
 		if ( $input->hasOption( 'wiki' ) && empty( $input->getOption( 'wiki' ) ) ) {
-			$this->io->note( $this->msg( 'no-wiki-specified' ) );
+			$this->io->note( $this->msg( 'option-wiki-missing' ) );
 			return 1;
 		}
 	}
@@ -104,6 +104,8 @@ abstract class CommandBase extends Command {
 			foreach ( $config['sites'] as $siteId => $s ) {
 				if ( $siteId === $wiki ) {
 					$site = $s;
+					// Add ID now, so it can be used as the config.yml key and not duplicated in the site array there.
+					$site[ 'id' ] = $siteId;
 				}
 			}
 		}
