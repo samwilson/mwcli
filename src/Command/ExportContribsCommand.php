@@ -15,6 +15,7 @@ class ExportContribsCommand extends CommandBase {
 	public function configure() {
 		parent::configure();
 		$this->setName( 'export:contribs' );
+		$this->setDescription( $this->msg( 'command-export-contribs-desc' ) );
 		$this->addOption( 'wiki', 'w', InputOption::VALUE_REQUIRED, $this->msg( 'option-wiki-desc' ) );
 		$this->addOption( 'user', 'u', InputOption::VALUE_REQUIRED, $this->msg( 'option-user-desc' ) );
 		$this->addOption( 'dest', 'd', InputOption::VALUE_REQUIRED, $this->msg( 'option-dest-desc' ),

@@ -15,6 +15,7 @@ class UploadCommand extends CommandBase {
 	public function configure() {
 		parent::configure();
 		$this->setName( 'upload' );
+		$this->setDescription( $this->msg( 'command-upload-desc' ) );
 		$this->addOption( 'wiki', 'w', InputOption::VALUE_REQUIRED, $this->msg( 'option-wiki-desc' ) );
 		$this->addOption( 'comment', 'm', InputOption::VALUE_REQUIRED, $this->msg( 'option-comment-desc' ), '' );
 		$this->addArgument( 'files', InputArgument::IS_ARRAY, $this->msg( 'arg-files-desc' ) );

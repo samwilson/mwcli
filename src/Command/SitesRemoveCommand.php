@@ -11,6 +11,7 @@ class SitesRemoveCommand extends CommandBase {
 	public function configure() {
 		parent::configure();
 		$this->setName( 'sites:remove' );
+		$this->setDescription( $this->msg( 'command-sites-remove-desc' ) );
 		$this->addOption( 'wiki', 'w', InputOption::VALUE_REQUIRED, $this->msg( 'option-wiki-desc' ) );
 	}
 

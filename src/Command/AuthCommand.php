@@ -11,6 +11,8 @@ class AuthCommand extends CommandBase {
 	public function configure() {
 		parent::configure();
 		$this->setName( 'auth' );
+		$this->setHidden( true );
+		$this->setDescription( $this->msg( 'command-auth-desc' ) );
 		$this->addOption( 'wiki', 'w', InputOption::VALUE_REQUIRED, $this->msg( 'option-wiki-desc' ) );
 	}
 

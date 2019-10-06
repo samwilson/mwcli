@@ -6,6 +6,11 @@ jobs:
       - checkout
       - run: sudo composer self-update
       - run: composer install
-      - run: composer test
+      - run:
+          name: Test
+          command: |
+            composer test
+            git status
+            git status | grep "nothing to commit, working tree clean"
 
 version: 2

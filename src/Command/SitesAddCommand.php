@@ -13,6 +13,7 @@ class SitesAddCommand extends CommandBase {
 	public function configure() {
 		parent::configure();
 		$this->setName( 'sites:add' );
+		$this->setDescription( $this->msg( 'command-sites-add-desc' ) );
 		$this->addOption( 'url', null, InputOption::VALUE_REQUIRED, $this->msg( 'option-url-desc' ) );
 	}
 

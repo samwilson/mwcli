@@ -3,6 +3,9 @@
   "option-config-desc": "Path of the Yaml config file to use.",
   "saved-config": "Configuration file saved.",
 
+  "command-sites-add-desc": "Add a new site to the config file.",
+  "command-sites-list-desc": "List all configured sites.",
+  "command-sites-remove-desc": "Remove a site from the config file.",
   "no-sites-found": "No sites found. Please use the <info>sites:add</info> command to add one.",
   "sites-add-ask-url": "Enter any URL of the wiki you want to add:",
   "sites-add-added": "Site added: $1 — $2",
@@ -11,12 +14,14 @@
   "option-wiki-desc": "The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.",
   "option-wiki-missing": "Please specify a wiki with the `--wiki` option.",
 
+  "command-export-contribs-desc": "Export a user's contributions.",
   "option-dest-desc": "The destination directory for exported files.",
   "option-user-desc": "Export contributions of this username.",
   "option-user-missing": "Please specify a user with the `--user` option.",
   "export-contribs-title": "Exporting title $1",
   "option-only-author-desc": "Export only where the given user is the original author of a page.",
 
+  "command-upload-desc": "Upload local files to a wiki.",
   "arg-files-desc": "Filenames of files to upload.",
   "ask-login-username": "Enter your bot username (e.g. YourName@mwcli):",
   "ask-login-password": "Enter your bot password:",
