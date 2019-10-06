@@ -37,7 +37,66 @@ or via commands such as `sites:add` and `sites:modify`.
 
 ## Usage
 
-@TODO
+### sites:add
+
+Add a new site to the config file.
+
+    sites:add [-c|--config [CONFIG]] [--url URL]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--url` — [option-url-desc]
+  *Required.*
+
+### sites:list
+
+List all configured sites.
+
+    sites:list [-c|--config [CONFIG]]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+
+### sites:remove
+
+Remove a site from the config file.
+
+    sites:remove [-c|--config [CONFIG]] [-w|--wiki WIKI]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+
+### export:contribs
+
+Export a user's contributions.
+
+    export:contribs [-c|--config [CONFIG]] [-w|--wiki WIKI] [-u|--user USER] [-d|--dest DEST] [-o|--only-author]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+* `--user` `-u` — Export contributions of this username.
+  *Required.*
+* `--dest` `-d` — The destination directory for exported files.
+  Default: '[CWD]/contribs'
+* `--only-author` `-o` — Export only where the given user is the original author of a page.
+
+### upload
+
+Upload local files to a wiki.
+
+    upload [-c|--config [CONFIG]] [-w|--wiki WIKI] [-m|--comment COMMENT] [--] [<files>...]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+* `--comment` `-m` — Revision comment.
+  *Required.*
+* `<files>` Filenames of files to upload.
 
 ## License: MIT
 

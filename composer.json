@@ -43,6 +43,7 @@
       "composer validate",
       "phpcs -s .",
       "minus-x check .",
+      "./bin/mwcli readme",
       "phpunit"
     ]
   }
