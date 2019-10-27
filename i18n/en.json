@@ -29,5 +29,17 @@
   "option-comment-desc": "Revision comment.",
   "file-exists": "File already exists: $1",
   "filename-exists": "Filename already in use: $1",
-  "file-uploaded-successfully": "File uploaded successfully: $1"
+  "file-uploaded-successfully": "File uploaded successfully: $1",
+
+  "command-extension-install-desc": "Install an extension into a local wiki. Requires 'install_path' to be set in a site's config.",
+  "argument-extension-name-desc": "The extension's name (CamelCase, with underscores for spaces).",
+  "option-gituser-desc": "The username to use for Git. Implies <info>--git</info>",
+  "option-git-desc": "Use Git to install the extension, instead of the default tarball method.",
+  "extension-already-installed": "Extension already installed.",
+  "extension-not-found": "Extension '$1' not found.",
+  "extracting-extension": "Extracting extension to $1",
+  "extension-cloned": "Extension '$1' cloned to $2",
+  "extension-installed": "Extension '$1' installed to $2",
+
+  "command-sites-info-desc": "Get general information about a wiki."
 }

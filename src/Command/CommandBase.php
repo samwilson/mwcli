@@ -110,7 +110,8 @@ abstract class CommandBase extends Command {
 			}
 		}
 		if ( !$site ) {
-			$this->io->warning( $this->msg( 'sites-auth-sitenotfound' ) );
+			$configPath = $input->getOption( 'config' );
+			$this->io->warning( $this->msg( 'sites-auth-sitenotfound', [ $wiki, $configPath ] ) );
 		}
 		return $site;
 	}

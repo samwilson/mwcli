@@ -5,19 +5,23 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Samwilson\MediaWikiCLI\Command\AuthCommand;
 use Samwilson\MediaWikiCLI\Command\ExportContribsCommand;
+use Samwilson\MediaWikiCLI\Command\ExtensionInstallCommand;
 use Samwilson\MediaWikiCLI\Command\ReadmeGenCommand;
 use Samwilson\MediaWikiCLI\Command\SitesAddCommand;
+use Samwilson\MediaWikiCLI\Command\SitesInfoCommand;
 use Samwilson\MediaWikiCLI\Command\SitesListCommand;
 use Samwilson\MediaWikiCLI\Command\SitesRemoveCommand;
 use Samwilson\MediaWikiCLI\Command\UploadCommand;
 use Symfony\Component\Console\Application;
 
-$application = new Application();
+$application = new Application( 'mwcli', '1.1.2' );
 $application->add(new SitesAddCommand());
+$application->add(new SitesInfoCommand());
 $application->add(new SitesListCommand());
 $application->add(new SitesRemoveCommand());
 $application->add(new AuthCommand());
 $application->add(new ExportContribsCommand());
+$application->add(new ExtensionInstallCommand());
 $application->add(new UploadCommand());
 $application->add(new ReadmeGenCommand());
 $application->run();

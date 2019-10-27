@@ -48,6 +48,17 @@ Add a new site to the config file.
 * `--url` — [option-url-desc]
   *Required.*
 
+### sites:info
+
+Get general information about a wiki.
+
+    sites:info [-c|--config [CONFIG]] [-w|--wiki WIKI]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+
 ### sites:list
 
 List all configured sites.
@@ -83,6 +94,21 @@ Export a user's contributions.
 * `--dest` `-d` — The destination directory for exported files.
   Default: '[CWD]/contribs'
 * `--only-author` `-o` — Export only where the given user is the original author of a page.
+
+### extension:install
+
+Install an extension into a local wiki. Requires 'install_path' to be set in a site's config.
+
+    extension:install [-c|--config [CONFIG]] [-w|--wiki WIKI] [-g|--git] [-u|--gituser GITUSER] [--] <extension-name>
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+* `--git` `-g` — Use Git to install the extension, instead of the default tarball method.
+* `--gituser` `-u` — The username to use for Git. Implies <info>--git</info>
+  *Required.*
+* `<extension-name>` The extension's name (CamelCase, with underscores for spaces).
 
 ### upload
 
