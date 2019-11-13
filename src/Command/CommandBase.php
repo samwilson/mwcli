@@ -25,7 +25,7 @@ abstract class CommandBase extends Command {
 		$this->intuition = new Intuition( 'mwcli' );
 		$this->intuition->registerDomain( 'mwcli', dirname( __DIR__, 2 ) . '/i18n' );
 
-		$default = $this->getConfigDir() . 'config.yml';
+		$default = $this->getConfigDirDefault() . 'config.yml';
 		$this->addOption( 'config', 'c', InputOption::VALUE_OPTIONAL, $this->msg( 'option-config-desc' ), $default );
 	}
 
@@ -54,16 +54,11 @@ abstract class CommandBase extends Command {
 	}
 
 	/**
-	 * @return string The full filesystem path to the directory containing config.yml, always with a trailing slash.
+	 * Get the default config directory (the root directory of mwcli).
+	 * @return string The full filesystem path, always with a trailing slash.
 	 */
-	protected function getConfigDir(): string {
-		// Use the current working directory for the config file,
-		// but that can fail on some systems so we fall back to the script's directory.
-		$configDir = getcwd();
-		if ( false === $configDir ) {
-			$configDir = dirname( __DIR__, 2 );
-		}
-		return rtrim( $configDir, DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR;
+	protected function getConfigDirDefault(): string {
+		return rtrim( dirname( __DIR__, 2 ), DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR;
 	}
 
 	/**

@@ -19,7 +19,7 @@ class ExportContribsCommand extends CommandBase {
 		$this->addOption( 'wiki', 'w', InputOption::VALUE_REQUIRED, $this->msg( 'option-wiki-desc' ) );
 		$this->addOption( 'user', 'u', InputOption::VALUE_REQUIRED, $this->msg( 'option-user-desc' ) );
 		$this->addOption( 'dest', 'd', InputOption::VALUE_REQUIRED, $this->msg( 'option-dest-desc' ),
-			$this->getConfigDir() . 'contribs' );
+			$this->getConfigDirDefault() . 'contribs' );
 		$this->addOption( 'only-author', 'o', InputOption::VALUE_NONE, $this->msg( 'option-only-author-desc' ) );
 	}
 

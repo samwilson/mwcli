@@ -7,9 +7,10 @@ class SitesAddCommandTest extends TestCase {
 
 	/**
 	 * @covers \Samwilson\MediaWikiCLI\Command\SitesAddCommand
+	 * @dataProvider provideAddSite
 	 */
-	public function testAddSite(): void {
-		$configFile = __DIR__ . '/config.yml';
+	public function testAddSite( $configFilename ): void {
+		$configFile = __DIR__ . '/' . $configFilename;
 		$process = new Process( [ 'bin/mwcli', 'sites:add', '--config', $configFile, '--url', 'https://en.wikipedia.org/' ] );
 		$process->mustRun();
 		static::assertFileExists( $configFile );
@@ -18,5 +19,12 @@ class SitesAddCommandTest extends TestCase {
 			file_get_contents( $configFile )
 		);
 		unlink( $configFile );
+	}
+
+	public function provideAddSite() {
+		return [
+			[ 'config.yml' ],
+			[ 'foobar.yaml' ]
+		];
 	}
 }
