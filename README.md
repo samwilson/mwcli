@@ -110,11 +110,11 @@ Install an extension into a local wiki. Requires 'install_path' to be set in a s
   *Required.*
 * `<extension-name>` The extension's name (CamelCase, with underscores for spaces).
 
-### upload
+### upload:files
 
 Upload local files to a wiki.
 
-    upload [-c|--config [CONFIG]] [-w|--wiki WIKI] [-m|--comment COMMENT] [--] [<files>...]
+    upload:files [-c|--config [CONFIG]] [-w|--wiki WIKI] [-m|--comment COMMENT] [--] [<files>...]
 
 * `--config` `-c` — Path of the Yaml config file to use.
   Default: '[CWD]/config.yml'
@@ -123,6 +123,20 @@ Upload local files to a wiki.
 * `--comment` `-m` — Revision comment.
   *Required.*
 * `<files>` Filenames of files to upload.
+
+### upload:pages
+
+Upload local text files as wiki pages.
+
+    upload:pages [-c|--config [CONFIG]] [-w|--wiki WIKI] [-m|--comment [COMMENT]] [-t|--watch] [--] <pages-dir>
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+* `--comment` `-m` — Revision comment.
+* `--watch` `-t` — Keep watching the files and upload on any change.
+* `<pages-dir>` Directory from which to import wiki pages.
 
 ## License: MIT
 
