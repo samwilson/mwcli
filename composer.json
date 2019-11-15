@@ -31,6 +31,9 @@
     "symfony/process": "^4.3",
     "symfony/yaml": "^4.3"
   },
+  "suggest": {
+    "ext-inotify": "To use the 'watch' option for the upload:pages command."
+  },
   "require-dev": {
     "jakub-onderka/php-parallel-lint": "^1.0",
     "mediawiki/mediawiki-codesniffer": "^28.0",

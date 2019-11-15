@@ -21,7 +21,7 @@
   "export-contribs-title": "Exporting title $1",
   "option-only-author-desc": "Export only where the given user is the original author of a page.",
 
-  "command-upload-desc": "Upload local files to a wiki.",
+  "command-upload-files-desc": "Upload local files to a wiki.",
   "arg-files-desc": "Filenames of files to upload.",
   "ask-login-username": "Enter your bot username (e.g. YourName@mwcli):",
   "ask-login-password": "Enter your bot password:",
@@ -30,6 +30,14 @@
   "file-exists": "File already exists: $1",
   "filename-exists": "Filename already in use: $1",
   "file-uploaded-successfully": "File uploaded successfully: $1",
+
+  "command-upload-pages-desc": "Upload local text files as wiki pages.",
+  "option-watch-desc": "Keep watching the files and upload on any change.",
+  "arg-pages-dir-desc": "Directory from which to import wiki pages.",
+  "now-watching": "Now watching directory for changes: $1",
+  "page-title-contains-hash": "Unable to upload (filename contains hash): $1",
+  "uploaded-page": "Uploaded page ($1): $2",
+  "page-not-changed": "No change: $1",
 
   "command-extension-install-desc": "Install an extension into a local wiki. Requires 'install_path' to be set in a site's config.",
   "argument-extension-name-desc": "The extension's name (CamelCase, with underscores for spaces).",
