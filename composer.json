@@ -28,7 +28,7 @@
     "addwiki/mediawiki-api-base": "^2.4",
     "krinkle/intuition": "^2.0",
     "symfony/console": "^4.3",
-    "symfony/process": "^4.3",
+    "symfony/process": "^5.0",
     "symfony/yaml": "^4.3"
   },
   "suggest": {
