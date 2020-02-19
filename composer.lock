@@ -8,21 +8,21 @@
     "packages": [
         {
             "name": "addwiki/mediawiki-api",
-            "version": "0.7.2",
+            "version": "0.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/addwiki/mediawiki-api.git",
-                "reference": "f52fc3760d82774512d344e41c45c878a2c6659e"
+                "reference": "cd1321526235b0a0507f92259254bd738ffb39d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/addwiki/mediawiki-api/zipball/f52fc3760d82774512d344e41c45c878a2c6659e",
-                "reference": "f52fc3760d82774512d344e41c45c878a2c6659e",
+                "url": "https://api.github.com/repos/addwiki/mediawiki-api/zipball/cd1321526235b0a0507f92259254bd738ffb39d3",
+                "reference": "cd1321526235b0a0507f92259254bd738ffb39d3",
                 "shasum": ""
             },
             "require": {
                 "addwiki/mediawiki-api-base": "~2.4",
-                "addwiki/mediawiki-datamodel": "~0.7.0"
+                "addwiki/mediawiki-datamodel": "~0.7.0|~0.8.0"
             },
             "require-dev": {
                 "jakub-onderka/php-parallel-lint": "^0.9.2",
@@ -54,7 +54,7 @@
             "keywords": [
                 "mediawiki"
             ],
-            "time": "2017-11-20T03:08:06+00:00"
+            "time": "2020-01-14T08:52:25+00:00"
         },
         {
             "name": "addwiki/mediawiki-api-base",
@@ -112,16 +112,16 @@
         },
         {
             "name": "addwiki/mediawiki-datamodel",
-            "version": "0.7.1",
+            "version": "0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/addwiki/mediawiki-datamodel.git",
-                "reference": "05dd783715a92ec5449bab4091c0482cf3fcface"
+                "reference": "ed644d977f96bd9f1b165fbb9f186dbdf0c0ff7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/addwiki/mediawiki-datamodel/zipball/05dd783715a92ec5449bab4091c0482cf3fcface",
-                "reference": "05dd783715a92ec5449bab4091c0482cf3fcface",
+                "url": "https://api.github.com/repos/addwiki/mediawiki-datamodel/zipball/ed644d977f96bd9f1b165fbb9f186dbdf0c0ff7d",
+                "reference": "ed644d977f96bd9f1b165fbb9f186dbdf0c0ff7d",
                 "shasum": ""
             },
             "require-dev": {
@@ -132,7 +132,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.7.x-dev"
+                    "dev-master": "0.8.x-dev"
                 }
             },
             "autoload": {
@@ -153,7 +153,7 @@
             "keywords": [
                 "mediawiki"
             ],
-            "time": "2018-01-10T19:14:13+00:00"
+            "time": "2018-07-30T09:55:08+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
