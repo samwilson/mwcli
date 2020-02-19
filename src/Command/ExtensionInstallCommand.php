@@ -79,6 +79,10 @@ class ExtensionInstallCommand extends CommandBase {
 			->setParam( 'meta', 'siteinfo' )
 			->setParam( 'siprop', 'general|extensions' );
 		$siteInfo = $siteApi->getRequest( $siteinfoReq );
+		if ( !isset( $siteInfo['query']['extensions'] ) ) {
+			$this->io->warning( $this->msg( 'extension-info-fetch-error' ) );
+			return 1;
+		}
 		foreach ( $siteInfo['query']['extensions'] as $extension ) {
 			if ( $extension['name'] === $extensionName ) {
 				$this->io->success( $this->msg( 'extension-already-installed', [ $extensionName ] ) );
