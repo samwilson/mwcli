@@ -45,7 +45,7 @@ Add a new site to the config file.
 
 * `--config` `-c` — Path of the Yaml config file to use.
   Default: '[CWD]/config.yml'
-* `--url` — [option-url-desc]
+* `--url` — The URL of the wiki. Can be to any page or even api.php.
   *Required.*
 
 ### sites:info

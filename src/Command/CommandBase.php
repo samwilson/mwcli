@@ -83,7 +83,7 @@ abstract class CommandBase extends Command {
 	 */
 	protected function saveConfig( InputInterface $input, array $config ): void {
 		$configPath = $input->getOption( 'config' );
-		file_put_contents( $configPath, Yaml::dump( $config ) );
+		file_put_contents( $configPath, Yaml::dump( $config, 3 ) );
 		$this->io->success( $this->msg( 'saved-config', [ $configPath ] ) );
 	}
 

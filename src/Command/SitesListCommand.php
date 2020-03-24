@@ -20,13 +20,14 @@ class SitesListCommand extends CommandBase {
 			$this->io->block( $this->msg( 'no-sites-found' ) );
 			return 0;
 		}
-		$headers = [ 'ID', 'Name', 'API' ];
+		$headers = [ 'ID', 'Name', 'API', 'Install path' ];
 		$rows = [];
 		foreach ( $config['sites'] as $siteId => $site ) {
 			$rows[] = [
 				$siteId,
 				$site['name'],
-				$site['api_url']
+				empty( $site['api_url'] ) ? '' : '✓',
+				empty( $site['install_path'] ) ? '' : '✓',
 			];
 		}
 		$this->io->table( $headers, $rows );
