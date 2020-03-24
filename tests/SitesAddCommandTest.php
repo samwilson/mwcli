@@ -15,7 +15,10 @@ class SitesAddCommandTest extends TestCase {
 		$process->mustRun();
 		static::assertFileExists( $configFile );
 		static::assertEquals(
-			"sites:\n    enwiki: { name: Wikipedia, main_page_url: 'https://en.wikipedia.org/wiki/Main_Page', api_url: 'https://en.wikipedia.org/w/api.php' }\n",
+			"sites:\n    enwiki:\n"
+			. "        name: Wikipedia\n"
+			. "        main_page_url: 'https://en.wikipedia.org/wiki/Main_Page'\n"
+			. "        api_url: 'https://en.wikipedia.org/w/api.php'\n",
 			file_get_contents( $configFile )
 		);
 		unlink( $configFile );

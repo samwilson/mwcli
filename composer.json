@@ -35,7 +35,7 @@
     "ext-inotify": "To use the 'watch' option for the upload:pages command."
   },
   "require-dev": {
-    "jakub-onderka/php-parallel-lint": "^1.0",
+    "php-parallel-lint/php-parallel-lint": "^1.0",
     "mediawiki/mediawiki-codesniffer": "^30.0",
     "mediawiki/minus-x": "^0.3",
     "phpunit/phpunit": "^8.2",
