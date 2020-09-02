@@ -29,7 +29,7 @@
     "krinkle/intuition": "^2.0",
     "symfony/console": "^4.3",
     "symfony/process": "^4.3",
-    "symfony/yaml": "^4.3"
+    "symfony/yaml": "^5.1"
   },
   "suggest": {
     "ext-inotify": "To use the 'watch' option for the upload:pages command."
