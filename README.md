@@ -1,15 +1,13 @@
 MediaWiki CLI
 =============
 
-A command line client for MediaWiki wikis.
+A command line client for [MediaWiki](https://www.mediawiki.org/) wikis.
 
 [![CircleCI](https://circleci.com/gh/samwilson/mwcli.svg)](https://circleci.com/gh/samwilson/mwcli)
 
-*[2019-07-01: This is a work in progress and not all documented features are working yet.]*
-
 ## About
 
-MediaWiki CLI (or `mwcli` for short) is a multilingual cross-platform PHP tool
+MediaWiki CLI (or `mwcli` for short) is a multilingual cross-platform PHP command-line tool
 for interacting with MediaWiki installations,
 to carry out tasks such as uploading and downloading files, and exporting pages.
 

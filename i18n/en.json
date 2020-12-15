@@ -46,6 +46,7 @@
   "option-git-desc": "Use Git to install the extension, instead of the default tarball method.",
   "extension-already-installed": "Extension already installed.",
   "extension-not-found": "Extension '$1' not found.",
+  "extension-info-fetch-error": "Unable to get site info about $1 from $2",
   "extracting-extension": "Extracting extension to $1",
   "extension-cloned": "Extension '$1' cloned to $2",
   "extension-installed": "Extension '$1' installed to $2",

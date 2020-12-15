@@ -80,7 +80,7 @@ class ExtensionInstallCommand extends CommandBase {
 			->setParam( 'siprop', 'general|extensions' );
 		$siteInfo = $siteApi->getRequest( $siteinfoReq );
 		if ( !isset( $siteInfo['query']['extensions'] ) ) {
-			$this->io->warning( $this->msg( 'extension-info-fetch-error' ) );
+			$this->io->warning( $this->msg( 'extension-info-fetch-error', [ $extensionName, $siteApi->getApiUrl() ] ) );
 			return 1;
 		}
 		foreach ( $siteInfo['query']['extensions'] as $extension ) {
