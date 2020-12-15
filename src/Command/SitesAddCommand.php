@@ -35,5 +35,6 @@ class SitesAddCommand extends CommandBase {
 		$this->setSite( $input, $siteInfo['query']['general']['wikiid'], $newSite );
 
 		$this->io->block( $this->msg( 'sites-add-added', [ $newSite['name'], $newSite['main_page_url'] ] ) );
+		return 0;
 	}
 }

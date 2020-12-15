@@ -49,6 +49,8 @@ class ReadmeGenCommand extends CommandBase {
 			file_put_contents( $readmePath, $newReadme );
 			$output->writeln( 'Updated README.md' );
 		}
+
+		return 0;
 	}
 
 }

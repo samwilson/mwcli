@@ -121,7 +121,7 @@ class UploadPagesCommand extends CommandBase {
 		$pageTitle = ucfirst( substr( $filename, strlen( $this->dir ) + 1 ) );
 		$fileExtension = pathinfo( $filename, PATHINFO_EXTENSION );
 		if ( in_array( $fileExtension, $this->ignoredFileExtensions ) ) {
-			$pageTitle = substr( $pageTitle, 0, - ( strlen( $fileExtension ) + 1 ) );
+			$pageTitle = substr( $pageTitle, 0, -( strlen( $fileExtension ) + 1 ) );
 		}
 		if ( strpos( $pageTitle, '#' ) !== false ) {
 			$this->io->warning( $this->msg( 'page-title-contains-hash', [ $filename ] ) );
