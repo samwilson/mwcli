@@ -24,9 +24,9 @@
     "sort-packages": true
   },
   "require": {
-    "addwiki/mediawiki-api": "^0.7.2",
-    "addwiki/mediawiki-api-base": "^2.4",
+    "addwiki/mediawiki-api": "^0.7",
     "krinkle/intuition": "^2.0",
+    "monolog/monolog": "^2.1",
     "symfony/console": "^4.3",
     "symfony/process": "^4.3",
     "symfony/yaml": "^4.3"

@@ -2,9 +2,13 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
+use Exception;
 use Krinkle\Intuition\Intuition;
 use Mediawiki\Api\ApiUser;
 use Mediawiki\Api\MediawikiApi;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -20,6 +24,9 @@ abstract class CommandBase extends Command {
 	/** @var SymfonyStyle */
 	protected $io;
 
+	/** @var LoggerInterface */
+	protected $logger;
+
 	public function configure() {
 		// Set up i18n.
 		$this->intuition = new Intuition( 'mwcli' );
@@ -31,6 +38,20 @@ abstract class CommandBase extends Command {
 
 	public function execute( InputInterface $input, OutputInterface $output ) {
 		$this->io = new SymfonyStyle( $input, $output );
+
+		$this->logger = new Logger( 'mwcli' );
+		$logLevel = Logger::ERROR;
+		if ( $output->isVerbose() ) {
+			$logLevel = Logger::WARNING;
+		}
+		if ( $output->isVeryVerbose() ) {
+			$logLevel = Logger::INFO;
+		}
+		if ( $output->isDebug() ) {
+			$logLevel = Logger::DEBUG;
+		}
+		$this->logger->pushHandler( new StreamHandler( fopen( 'php://stdout', 'w' ), $logLevel ) );
+		$this->logger->debug( 'Logger configured at level ' . $logLevel );
 
 		// 'wiki' is a common option for many commands, so we can validate it here.
 		if ( $input->hasOption( 'wiki' ) && empty( $input->getOption( 'wiki' ) ) ) {
@@ -85,6 +106,22 @@ abstract class CommandBase extends Command {
 		$configPath = $input->getOption( 'config' );
 		file_put_contents( $configPath, Yaml::dump( $config, 3 ) );
 		$this->io->success( $this->msg( 'saved-config', [ $configPath ] ) );
+	}
+
+	protected function getApi( array $siteInfo ): MediawikiApi {
+		// API.
+		if ( isset( $siteInfo['api_url'] ) ) {
+			$api = MediawikiApi::newFromApiEndpoint( $siteInfo['api_url'] );
+		} elseif ( isset( $siteInfo['main_page_url'] ) ) {
+			$api = MediawikiApi::newFromPage( $siteInfo['main_page_url'] );
+		} else {
+			throw new Exception( '$siteInfo does not include a URL.' );
+		}
+
+		// Logger.
+		$api->setLogger( $this->logger );
+
+		return $api;
 	}
 
 	/**
