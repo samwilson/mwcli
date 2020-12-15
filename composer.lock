@@ -346,16 +346,16 @@
         },
         {
             "name": "krinkle/intuition",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Krinkle/intuition.git",
-                "reference": "22118cb403a0f69cf04491741e1aa9fe11455d1e"
+                "reference": "d1c051e77d69ecf4859172d55f77ab3b32e46f6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Krinkle/intuition/zipball/22118cb403a0f69cf04491741e1aa9fe11455d1e",
-                "reference": "22118cb403a0f69cf04491741e1aa9fe11455d1e",
+                "url": "https://api.github.com/repos/Krinkle/intuition/zipball/d1c051e77d69ecf4859172d55f77ab3b32e46f6c",
+                "reference": "d1c051e77d69ecf4859172d55f77ab3b32e46f6c",
                 "shasum": ""
             },
             "require": {
@@ -363,7 +363,7 @@
             },
             "require-dev": {
                 "jakub-onderka/php-parallel-lint": "1.0.0",
-                "mediawiki/mediawiki-codesniffer": "27.0.0",
+                "mediawiki/mediawiki-codesniffer": "28.0.0",
                 "php-coveralls/php-coveralls": "^2.1",
                 "phpunit/phpunit": "^8.4.1"
             },
@@ -384,7 +384,7 @@
                 "MIT"
             ],
             "description": "Framework for localisation in PHP.",
-            "time": "2019-11-24T21:52:56+00:00"
+            "time": "2020-07-13T18:56:00+00:00"
         },
         {
             "name": "monolog/monolog",
