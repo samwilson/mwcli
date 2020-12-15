@@ -31,7 +31,7 @@
     "krinkle/intuition": "^2.0",
     "monolog/monolog": "^2.1",
     "symfony/console": "^4.3",
-    "symfony/process": "^4.3",
+    "symfony/process": "^5.2",
     "symfony/yaml": "^4.3"
   },
   "suggest": {
