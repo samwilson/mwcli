@@ -42,7 +42,7 @@
     "mediawiki/mediawiki-codesniffer": "^34.0",
     "mediawiki/minus-x": "^0.3",
     "phpunit/phpunit": "^8.2",
-    "symfony/var-dumper": "^4.3"
+    "symfony/var-dumper": "^5.2"
   },
   "scripts": {
     "test": [
