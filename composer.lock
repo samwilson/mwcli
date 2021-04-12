@@ -346,26 +346,26 @@
         },
         {
             "name": "krinkle/intuition",
-            "version": "v2.2.0",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Krinkle/intuition.git",
-                "reference": "d1c051e77d69ecf4859172d55f77ab3b32e46f6c"
+                "reference": "39cc5fbb3ced1d1bff166bbe3434b5f1953bdd06"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Krinkle/intuition/zipball/d1c051e77d69ecf4859172d55f77ab3b32e46f6c",
-                "reference": "d1c051e77d69ecf4859172d55f77ab3b32e46f6c",
+                "url": "https://api.github.com/repos/Krinkle/intuition/zipball/39cc5fbb3ced1d1bff166bbe3434b5f1953bdd06",
+                "reference": "39cc5fbb3ced1d1bff166bbe3434b5f1953bdd06",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.2"
             },
             "require-dev": {
-                "jakub-onderka/php-parallel-lint": "1.0.0",
-                "mediawiki/mediawiki-codesniffer": "28.0.0",
-                "php-coveralls/php-coveralls": "^2.1",
-                "phpunit/phpunit": "^8.4.1"
+                "mediawiki/mediawiki-codesniffer": "32.0.0",
+                "php-coveralls/php-coveralls": "^2.4",
+                "php-parallel-lint/php-parallel-lint": "^1.0.0",
+                "phpunit/phpunit": "^8.5.13"
             },
             "type": "library",
             "autoload": {
@@ -384,7 +384,7 @@
                 "MIT"
             ],
             "description": "Framework for localisation in PHP.",
-            "time": "2020-07-13T18:56:00+00:00"
+            "time": "2021-04-09T21:18:56+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3466,12 +3466,12 @@
             "version": "1.9.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/webmozart/assert.git",
+                "url": "https://github.com/webmozarts/assert.git",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
+                "url": "https://api.github.com/repos/webmozarts/assert/zipball/bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "reference": "bafc69caeb4d49c39fd0779086c03a3738cbb389",
                 "shasum": ""
             },
