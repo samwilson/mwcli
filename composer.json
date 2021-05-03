@@ -32,7 +32,7 @@
     "monolog/monolog": "^2.1",
     "symfony/console": "^4.3",
     "symfony/process": "^4.3",
-    "symfony/yaml": "^4.3"
+    "symfony/yaml": "^5.2"
   },
   "suggest": {
     "ext-inotify": "To use the 'watch' option for the upload:pages command."
