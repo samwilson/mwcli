@@ -1,7 +1,12 @@
 {
   "using-config": "Using config file $1",
   "option-config-desc": "Path of the Yaml config file to use.",
-  "saved-config": "Configuration file saved.",
+  "saved-config": "Configuration file saved: $1",
+
+  "command-sites-create-desc": "Install a new MediaWiki site and add it to the config file.",
+  "option-installdir-desc": "Directory in which to install MediaWiki.",
+  "mediawiki-installed": "MediaWiki has been installed to $1",
+  "install-option-required": "Please specify the `--$1` option.",
 
   "command-sites-add-desc": "Add a new site to the config file.",
   "command-sites-list-desc": "List all configured sites.",
@@ -11,6 +16,9 @@
   "sites-add-ask-url": "Enter any URL of the wiki you want to add:",
   "sites-add-added": "Site added: $1 — $2",
   "sites-auth-sitenotfound": "Site '$1' not found in config file $2",
+
+  "sites-create-directory-not-empty": "Directory $1 is not empty. Please use --installdir to install to an empty or non-existent directory.",
+  "sites-create-site-already-exists": "Site '$1' is already defined in the config file.",
 
   "option-wiki-desc": "The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.",
   "option-wiki-missing": "Please specify a wiki with the `--wiki` option.",

@@ -7,6 +7,7 @@ on:
   pull_request:
     branches:
       - '**'
+
 jobs:
   build:
 
@@ -25,13 +26,17 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{matrix.php}}
-        extensions: pdo, inotify
+        extensions: pdo, inotify, sqlite3, zip
 
     - name: Install
       run: |
         composer install
 
     - name: Test
+      env:
+        MWCLI_DBNAME: testdb
+        MWCLI_DBUSER: root
+        MWCLI_DBPASS: testpwd
       run: |
         composer test
         git status

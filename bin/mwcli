@@ -10,6 +10,7 @@ use Samwilson\MediaWikiCLI\Command\ExtensionInstallCommand;
 use Samwilson\MediaWikiCLI\Command\ExtensionOutdatedCommand;
 use Samwilson\MediaWikiCLI\Command\ReadmeGenCommand;
 use Samwilson\MediaWikiCLI\Command\SitesAddCommand;
+use Samwilson\MediaWikiCLI\Command\SitesCreateCommand;
 use Samwilson\MediaWikiCLI\Command\SitesInfoCommand;
 use Samwilson\MediaWikiCLI\Command\SitesListCommand;
 use Samwilson\MediaWikiCLI\Command\SitesRemoveCommand;
@@ -19,6 +20,7 @@ use Symfony\Component\Console\Application;
 
 $application = new Application( 'mwcli', '1.3.0' );
 $application->add(new SitesAddCommand());
+$application->add(new SitesCreateCommand());
 $application->add(new SitesInfoCommand());
 $application->add(new SitesListCommand());
 $application->add(new SitesRemoveCommand());

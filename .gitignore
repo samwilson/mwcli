@@ -3,4 +3,6 @@
 /.idea/
 /contribs/
 /.phpunit.result.cache
+/phpunit.xml
 /build/
+/temp/

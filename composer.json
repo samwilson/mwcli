@@ -27,11 +27,13 @@
     "sort-packages": true
   },
   "require": {
+    "ext-zip": "*",
     "addwiki/addwiki": "dev-main",
     "dnoegel/php-xdg-base-dir": "^0.1",
     "krinkle/intuition": "^2.0",
     "monolog/monolog": "^2.1",
     "symfony/console": "^5.0",
+    "symfony/filesystem": "^5.0",
     "symfony/process": "^5.0",
     "symfony/yaml": "^5.0"
   },
@@ -39,6 +41,7 @@
     "ext-inotify": "To use the 'watch' option for the upload:pages command."
   },
   "require-dev": {
+    "ext-sqlite3": "*",
     "php-parallel-lint/php-parallel-lint": "^1.0",
     "mediawiki/mediawiki-codesniffer": "^39.0",
     "mediawiki/minus-x": "^1.0",

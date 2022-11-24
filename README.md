@@ -46,6 +46,39 @@ Add a new site to the config file.
 * `--url` — The URL of the wiki. Can be to any page or even api.php.
   *Required.*
 
+### sites:create
+
+Install a new MediaWiki site and add it to the config file.
+
+    sites:create [-c|--config [CONFIG]] [-w|--wiki WIKI] [--mwver MWVER] [-i|--installdir INSTALLDIR] [--dbname DBNAME] [--dbserver DBSERVER] [--dbport DBPORT] [--dbtype DBTYPE] [--dbuser DBUSER] [--dbpass DBPASS] [--wikiserver WIKISERVER] [--adminuser ADMINUSER] [--adminpass ADMINPASS]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+* `--mwver` — [option-mwver-desc]
+  *Required.*
+* `--installdir` `-i` — Directory in which to install MediaWiki.
+  Default: '[CWD]'
+* `--dbname` — [option-dbname-desc]
+  *Required.*
+* `--dbserver` — [option-dbserver-desc]
+  *Required.*
+* `--dbport` — [option-dbport-desc]
+  *Required.*
+* `--dbtype` — [option-dbtype-desc]
+  *Required.*
+* `--dbuser` — [option-dbuser-desc]
+  *Required.*
+* `--dbpass` — [option-dbpass-desc]
+  *Required.*
+* `--wikiserver` — [option-server-desc]
+  *Required.*
+* `--adminuser` — [option-adminuser-desc]
+  Default: 'Admin'
+* `--adminpass` — [option-adminpass-desc]
+  *Required.*
+
 ### sites:info
 
 Get general information about a wiki.

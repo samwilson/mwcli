@@ -64,7 +64,11 @@ class UploadPagesCommand extends CommandBase {
 		}
 		$this->dir = realpath( $dir );
 		$this->comment = $input->getOption( 'comment' );
-		$this->watch = $input->getOption( 'watch' ) && function_exists( 'inotify_init' );
+		$this->watch = $input->getOption( 'watch' );
+		if ( $this->watch && !function_exists( 'inotify_init' ) ) {
+			$this->watch = false;
+			$this->io->warning( 'inotify is not installed, so watching is not available, sorry.' );
+		}
 		if ( $this->watch ) {
 			$this->inotify = inotify_init();
 		}
