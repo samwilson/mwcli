@@ -52,7 +52,7 @@ class SitesInfoCommand extends CommandBase {
 
 		if ( isset( $siteInfo['query']['statistics'] ) ) {
 			$this->io->section( 'Statistics' );
-			array_walk( $siteInfo['query']['statistics'], function ( &$v, $k ) { $v = [ $k, $v ];
+			array_walk( $siteInfo['query']['statistics'], static function ( &$v, $k ) { $v = [ $k, $v ];
 			} );
 			$this->io->table( [], $siteInfo['query']['statistics'] );
 		}

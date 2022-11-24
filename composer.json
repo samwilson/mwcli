@@ -22,27 +22,27 @@
   },
   "config": {
     "platform": {
-      "php": "7.2.5"
+      "php": "7.4"
     },
     "sort-packages": true
   },
   "require": {
-    "addwiki/mediawiki-api": "^0.7",
+    "addwiki/mediawiki-api": "^2.0",
     "krinkle/intuition": "^2.0",
     "monolog/monolog": "^2.1",
-    "symfony/console": "^4.3",
-    "symfony/process": "^4.3",
-    "symfony/yaml": "^4.3"
+    "symfony/console": "^5.0",
+    "symfony/process": "^5.0",
+    "symfony/yaml": "^5.0"
   },
   "suggest": {
     "ext-inotify": "To use the 'watch' option for the upload:pages command."
   },
   "require-dev": {
     "php-parallel-lint/php-parallel-lint": "^1.0",
-    "mediawiki/mediawiki-codesniffer": "^34.0",
-    "mediawiki/minus-x": "^0.3",
+    "mediawiki/mediawiki-codesniffer": "^39.0",
+    "mediawiki/minus-x": "^1.0",
     "phpunit/phpunit": "^8.2",
-    "symfony/var-dumper": "^4.3"
+    "symfony/var-dumper": "^4.3|^5.0"
   },
   "scripts": {
     "test": [

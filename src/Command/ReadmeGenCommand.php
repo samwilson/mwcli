@@ -14,7 +14,7 @@ class ReadmeGenCommand extends CommandBase {
 	}
 
 	public function execute( InputInterface $input, OutputInterface $output ) {
-		$excludedCommands = [ 'help', 'list', $this->getName() ];
+		$excludedCommands = [ 'help', 'list', 'completion', $this->getName() ];
 		$commandInfo = '';
 		foreach ( $this->getApplication()->all() as $command ) {
 			if ( in_array( $command->getName(), $excludedCommands ) || $command->isHidden() ) {
