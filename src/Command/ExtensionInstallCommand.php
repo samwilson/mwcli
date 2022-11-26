@@ -2,8 +2,8 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
-use Mediawiki\Api\FluentRequest;
-use Mediawiki\Api\MediawikiApi;
+use Addwiki\Mediawiki\Api\Client\Action\Request\ActionRequest;
+use Addwiki\Mediawiki\Api\Client\MediaWiki;
 use PharData;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -73,12 +73,13 @@ class ExtensionInstallCommand extends CommandBase {
 		}
 
 		// Get site info.
-		$siteApi = MediawikiApi::newFromApiEndpoint( $site['api_url'] );
-		$siteinfoReq = FluentRequest::factory()->setAction( 'query' )
-			// MediaWiki version.
+		$siteApi = MediaWiki::newFromEndpoint( $site['api_url'] )->action();
+		$siteinfoReq = ActionRequest::factory()
+			->setMethod( 'GET' )
+			->setAction( 'query' )
 			->setParam( 'meta', 'siteinfo' )
 			->setParam( 'siprop', 'general|extensions' );
-		$siteInfo = $siteApi->getRequest( $siteinfoReq );
+		$siteInfo = $siteApi->request( $siteinfoReq );
 		if ( !isset( $siteInfo['query']['extensions'] ) ) {
 			$this->io->warning( $this->msg( 'extension-info-fetch-error', [ $extensionName, $siteApi->getApiUrl() ] ) );
 			return 1;
@@ -91,11 +92,13 @@ class ExtensionInstallCommand extends CommandBase {
 		}
 
 		// Get list of available extension versions.
-		$api = MediawikiApi::newFromApiEndpoint( 'https://www.mediawiki.org/w/api.php' );
-		$mediawikiOrgInfoReq = FluentRequest::factory()->setAction( 'query' )
+		$api = MediaWiki::newFromEndpoint( 'https://www.mediawiki.org/w/api.php' )->action();
+		$mediawikiOrgInfoReq = ActionRequest::factory()
+			->setMethod( 'GET' )
+			->setAction( 'query' )
 			->setParam( 'list', 'extdistbranches' )
 			->setParam( 'edbexts', $extensionName );
-		$mediawikiOrgInfo = $api->getRequest( $mediawikiOrgInfoReq );
+		$mediawikiOrgInfo = $api->request( $mediawikiOrgInfoReq );
 		if ( !isset( $mediawikiOrgInfo['query']['extdistbranches']['extensions'][ $extensionName ] ) ) {
 			$this->io->warning( $this->msg( 'extension-not-found', [ $extensionName ] ) );
 			return 1;

@@ -2,7 +2,7 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
-use Mediawiki\Api\FluentRequest;
+use Addwiki\Mediawiki\Api\Client\Action\Request\ActionRequest;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -34,10 +34,12 @@ class SitesInfoCommand extends CommandBase {
 		$api = $this->getApi( $site );
 
 		$this->logger->debug( 'Getting siteinfo from ' . $api->getApiUrl() );
-		$siteinfoReq = FluentRequest::factory()->setAction( 'query' )
+		$siteinfoReq = ActionRequest::factory()
+			->setMethod( 'GET' )
+			->setAction( 'query' )
 			->setParam( 'meta', 'siteinfo' )
 			->setParam( 'siprop', 'general|statistics|extensions' );
-		$siteInfo = $api->getRequest( $siteinfoReq );
+		$siteInfo = $api->request( $siteinfoReq );
 
 		$general = $siteInfo['query']['general'];
 		$this->logger->debug( 'General info', $general );

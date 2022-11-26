@@ -2,10 +2,11 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
+use Addwiki\Mediawiki\Api\Client\Action\ActionApi;
+use Addwiki\Mediawiki\Api\Client\Action\Request\ActionRequest;
+use Addwiki\Mediawiki\Api\Client\MediaWiki;
 use GuzzleHttp\Client;
 use GuzzleHttp\Pool;
-use Mediawiki\Api\FluentRequest;
-use Mediawiki\Api\MediawikiApi;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -39,13 +40,15 @@ class ExportContribsCommand extends CommandBase {
 			return 1;
 		}
 
-		$api = MediawikiApi::newFromApiEndpoint( $site['api_url'] );
+		$api = MediaWiki::newFromEndpoint( $site['api_url'] )->action();
 		$continue = true;
-		$siteinfoReq = FluentRequest::factory()->setAction( 'query' )
+		$siteinfoReq = ActionRequest::factory()
+			->setMethod( 'GET' )
+			->setAction( 'query' )
 			->setParam( 'list', 'usercontribs' )
 			->setParam( 'ucuser', $user );
 		while ( $continue ) {
-			$contribs = $api->getRequest( $siteinfoReq );
+			$contribs = $api->request( $siteinfoReq );
 			if ( isset( $contribs['continue']['uccontinue'] ) ) {
 				$siteinfoReq->setParam( 'uccontinue', $contribs['continue']['uccontinue'] );
 			} else {
@@ -59,7 +62,7 @@ class ExportContribsCommand extends CommandBase {
 		return 0;
 	}
 
-	public function getPageOfContribs( $site, $destDirBase, $contribs, MediawikiApi $api, bool $onlyAuthor ) {
+	public function getPageOfContribs( $site, $destDirBase, $contribs, ActionApi $api, bool $onlyAuthor ) {
 		$client = new Client();
 		$requests = [];
 		foreach ( $contribs['query']['usercontribs'] as $contrib ) {
@@ -88,11 +91,13 @@ class ExportContribsCommand extends CommandBase {
 
 			// File export for file pages.
 			if ( $namespace === 'File' ) {
-				$imageInfoRequest = FluentRequest::factory()->setAction( 'query' )
+				$imageInfoRequest = ActionRequest::factory()
+					->setMethod( 'GET' )
+					->setAction( 'query' )
 					->setParam( 'prop', 'imageinfo' )
 					->setParam( 'iiprop', 'url|sha1' )
 					->setParam( 'pageids', $contrib['pageid'] );
-				$imageInfoResponse = $api->getRequest( $imageInfoRequest );
+				$imageInfoResponse = $api->request( $imageInfoRequest );
 				$imageInfo = $imageInfoResponse['query']['pages'][$contrib['pageid']];
 				// Not all file pages have images (e.g. redirects).
 				if ( isset( $imageInfo['imageinfo'] ) ) {

@@ -2,10 +2,12 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
+use Addwiki\Mediawiki\Api\Client\Action\ActionApi;
+use Addwiki\Mediawiki\Api\Client\Auth\AuthMethod;
+use Addwiki\Mediawiki\Api\Client\Auth\UserAndPassword;
+use Addwiki\Mediawiki\Api\Client\MediaWiki;
 use Exception;
 use Krinkle\Intuition\Intuition;
-use Mediawiki\Api\ApiUser;
-use Mediawiki\Api\MediawikiApi;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
@@ -108,20 +110,20 @@ abstract class CommandBase extends Command {
 		$this->io->success( $this->msg( 'saved-config', [ $configPath ] ) );
 	}
 
-	protected function getApi( array $siteInfo ): MediawikiApi {
+	protected function getApi( array $siteInfo, ?AuthMethod $authMethod = null ): ActionApi {
 		// API.
 		if ( isset( $siteInfo['api_url'] ) ) {
-			$api = MediawikiApi::newFromApiEndpoint( $siteInfo['api_url'] );
+			$api = MediaWiki::newFromEndpoint( $siteInfo['api_url'], $authMethod );
 		} elseif ( isset( $siteInfo['main_page_url'] ) ) {
-			$api = MediawikiApi::newFromPage( $siteInfo['main_page_url'] );
+			$api = MediaWiki::newFromPage( $siteInfo['main_page_url'], $authMethod );
 		} else {
 			throw new Exception( '$siteInfo does not include a URL.' );
 		}
 
 		// Logger.
-		$api->setLogger( $this->logger );
+		$api->action()->setLogger( $this->logger );
 
-		return $api;
+		return $api->action();
 	}
 
 	/**
@@ -163,9 +165,9 @@ abstract class CommandBase extends Command {
 	}
 
 	/**
-	 * Log the user in to the given site. If the site doesn't have requisite authentication details, ask for them.
+	 * Get an AuthMethod for the current site. If the site doesn't have requisite authentication details, ask for them.
 	 */
-	public function login( InputInterface $input, MediawikiApi $api ) {
+	public function getAuthMethod( InputInterface $input ): AuthMethod {
 		$siteName = $input->getOption( 'wiki' );
 		$site = $this->getSite( $input );
 		if ( !isset( $site['username'] ) ) {
@@ -176,9 +178,7 @@ abstract class CommandBase extends Command {
 			$site['password'] = $this->io->askHidden( $this->msg( 'ask-login-password' ) );
 			$this->setSite( $input, $siteName, $site );
 		}
-
-		// Try to log in.
 		$site = $this->getSite( $input );
-		return $api->login( new ApiUser( $site['username'], $site['password'] ) );
+		return new UserAndPassword( $site['username'], $site['password'] );
 	}
 }
