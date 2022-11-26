@@ -2,11 +2,11 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
+use Addwiki\Mediawiki\Api\Client\Action\ActionApi;
+use Addwiki\Mediawiki\Api\Client\Action\Request\ActionRequest;
+use Addwiki\Mediawiki\Api\Service\NamespaceGetter;
 use DirectoryIterator;
 use Exception;
-use Mediawiki\Api\MediawikiApi;
-use Mediawiki\Api\Service\NamespaceGetter;
-use Mediawiki\Api\SimpleRequest;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -20,7 +20,7 @@ class UploadPagesCommand extends CommandBase {
 	/** @var string[] File extensions that will be stripped from uploaded page titles. */
 	protected $ignoredFileExtensions = [ 'txt', 'wikitext', 'md', 'lua' ];
 
-	/** @var MediawikiApi */
+	/** @var ActionApi */
 	protected $api;
 
 	/** @var string[][] */
@@ -70,8 +70,7 @@ class UploadPagesCommand extends CommandBase {
 		}
 		// API.
 		$site = $this->getSite( $input );
-		$this->api = MediawikiApi::newFromApiEndpoint( $site['api_url'] );
-		$this->login( $input, $this->api );
+		$this->api = $this->getApi( $site, $this->getAuthMethod( $input ) );
 
 		// Namespaces (ignore mainspace).
 		$nsGetter = new NamespaceGetter( $this->api );
@@ -154,7 +153,7 @@ class UploadPagesCommand extends CommandBase {
 			'summary' => $this->comment,
 		];
 		try {
-			$result = $this->api->postRequest( new SimpleRequest( 'edit', $editParams ) );
+			$result = $this->api->request( ActionRequest::simplePost( 'edit', $editParams ) );
 		} catch ( Exception $exception ) {
 			// Show the error, but carry on with other pages.
 			$this->io->error( $pageTitle . ' ' . $exception->getMessage() );

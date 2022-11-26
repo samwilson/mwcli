@@ -2,6 +2,7 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -18,7 +19,7 @@ class SitesListCommand extends CommandBase {
 		$config = $this->getConfig( $input );
 		if ( !isset( $config['sites'] ) ) {
 			$this->io->block( $this->msg( 'no-sites-found' ) );
-			return 0;
+			return Command::FAILURE;
 		}
 		$headers = [ 'ID', 'Name', 'API', 'Install path' ];
 		$rows = [];
@@ -31,5 +32,6 @@ class SitesListCommand extends CommandBase {
 			];
 		}
 		$this->io->table( $headers, $rows );
+		return Command::SUCCESS;
 	}
 }

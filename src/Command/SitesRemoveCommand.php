@@ -2,6 +2,7 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -21,12 +22,12 @@ class SitesRemoveCommand extends CommandBase {
 		$wiki = $input->getOption( 'wiki' );
 		if ( !$wiki ) {
 			$this->io->warning( $this->msg( 'sites-remove-nowiki' ) );
-			return 1;
+			return Command::FAILURE;
 		}
 		$siteRemoved = false;
 		if ( isset( $config['sites'] ) ) {
 			foreach ( $config['sites'] as $index => $site ) {
-				if ( $site['id'] === $wiki ) {
+				if ( $index === $wiki ) {
 					$siteRemoved = true;
 					unset( $config['sites'][$index] );
 				}
@@ -36,5 +37,6 @@ class SitesRemoveCommand extends CommandBase {
 			$this->saveConfig( $input, $config );
 			$this->io->block( $this->msg( 'sites-add-removed' ) );
 		}
+		return Command::SUCCESS;
 	}
 }

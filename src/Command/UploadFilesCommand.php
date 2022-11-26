@@ -2,9 +2,9 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
-use Mediawiki\Api\FluentRequest;
-use Mediawiki\Api\MediawikiApi;
-use Mediawiki\Api\Service\FileUploader;
+use Addwiki\Mediawiki\Api\Client\Action\Request\ActionRequest;
+use Addwiki\Mediawiki\Api\Service\FileUploader;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -29,17 +29,15 @@ class UploadFilesCommand extends CommandBase {
 		$files = $input->getArgument( 'files' );
 		if ( empty( $files ) ) {
 			$this->io->error( $this->msg( 'files-missing' ) );
-			return 1;
+			return Command::FAILURE;
 		}
 		$site = $this->getSite( $input );
 		if ( !$site ) {
-			return 1;
+			return Command::FAILURE;
 		}
 
-		$api = MediawikiApi::newFromApiEndpoint( $site['api_url'] );
+		$api = $this->getApi( $site, $this->getAuthMethod( $input ) );
 		$uploader = new FileUploader( $api );
-
-		$this->login( $input, $api );
 
 		foreach ( $files as $file ) {
 			$filePath = realpath( $file );
@@ -50,22 +48,24 @@ class UploadFilesCommand extends CommandBase {
 			$fileTitle = basename( $file );
 			// See if the same file exists.
 			$sha1 = sha1_file( $filePath );
-			$fileExistsRequest = FluentRequest::factory()
+			$fileExistsRequest = ActionRequest::factory()
+				->setMethod( 'GET' )
 				->setAction( 'query' )
 				->setParam( 'list', 'allimages' )
 				->setParam( 'aisha1', $sha1 );
-			$fileExists = $api->getRequest( $fileExistsRequest );
+			$fileExists = $api->request( $fileExistsRequest );
 			if ( isset( $fileExists['query']['allimages'][0]['descriptionurl'] ) ) {
 				$this->io->warning( $this->msg( 'file-exists', [ $fileExists['query']['allimages'][0]['descriptionurl'] ] ) );
 				continue;
 			}
 			// See if the desired filename exists.
-			$filenameExistsRequest = FluentRequest::factory()
+			$filenameExistsRequest = ActionRequest::factory()
+				->setMethod( 'GET' )
 				->setAction( 'query' )
 				->setParam( 'titles', 'File:' . $fileTitle )
 				->setParam( 'prop', 'info' )
 				->setParam( 'inprop', 'url' );
-			$filenameExists = $api->getRequest( $filenameExistsRequest );
+			$filenameExists = $api->request( $filenameExistsRequest );
 			$filenameExistsInfo = array_shift( $filenameExists['query']['pages'] );
 			if ( isset( $filenameExistsInfo['pageid'] ) ) {
 				$this->io->warning( $this->msg( 'filename-exists', [ $filenameExistsInfo['canonicalurl'] ] ) );
@@ -79,5 +79,6 @@ class UploadFilesCommand extends CommandBase {
 				$this->io->success( $this->msg( 'file-uploaded-successfully', [ $filenameExistsInfo['canonicalurl'] ] ) );
 			}
 		}
+		return Command::SUCCESS;
 	}
 }
