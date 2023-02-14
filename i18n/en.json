@@ -51,5 +51,10 @@
   "extension-cloned": "Extension '$1' cloned to $2",
   "extension-installed": "Extension '$1' installed to $2",
 
+  "command-extension-outdated-desc": "Shows a list of installed extensions that have updates available, including their latest version.",
+  "extension-outdated-header-name": "Extension",
+  "extension-outdated-header-installed": "Installed",
+  "extension-outdated-header-latest": "Latest",
+
   "command-sites-info-desc": "Get general information about a wiki."
 }

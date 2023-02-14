@@ -108,6 +108,17 @@ Install an extension into a local wiki. Requires 'install_path' to be set in a s
   *Required.*
 * `<extension-name>` The extension's name (CamelCase, with underscores for spaces).
 
+### extension:outdated
+
+Shows a list of installed extensions that have updates available, including their latest version.
+
+    extension:outdated [-c|--config [CONFIG]] [-w|--wiki WIKI]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+
 ### upload:files
 
 Upload local files to a wiki.
