@@ -3,6 +3,7 @@
 namespace Samwilson\MediaWikiCLI\Command;
 
 use Addwiki\Mediawiki\Api\Client\Action\Request\ActionRequest;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -40,6 +41,10 @@ class SitesInfoCommand extends CommandBase {
 			->setParam( 'meta', 'siteinfo' )
 			->setParam( 'siprop', 'general|statistics|extensions' );
 		$siteInfo = $api->request( $siteinfoReq );
+		if ( !isset( $siteInfo['query']['general'] ) ) {
+			$this->io->error( 'Unable to fetch site info.' );
+			return Command::FAILURE;
+		}
 
 		$general = $siteInfo['query']['general'];
 		$this->logger->debug( 'General info', $general );
