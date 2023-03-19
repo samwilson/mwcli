@@ -3,7 +3,6 @@
 namespace Samwilson\MediaWikiCLI\Command;
 
 use Addwiki\Mediawiki\Api\Client\Action\Request\ActionRequest;
-use Addwiki\Mediawiki\Api\Client\MediaWiki;
 use GuzzleHttp\Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -42,10 +41,13 @@ class ExtensionOutdatedCommand extends CommandBase {
 
 		// Get info about installed extensions.
 		$siteinfoReq = ActionRequest::simpleGet( 'query', [ 'meta' => 'siteinfo', 'siprop' => 'extensions' ] );
-		$siteInfo = MediaWiki::newFromEndpoint( $site['api_url'] )
-			->action()
+		$siteInfo = $this->getApi( $site )
 			->request( $siteinfoReq );
-		$installedExtensions = $siteInfo['query']['extensions'] ?? null;
+		if ( !isset( $siteInfo['query']['extensions'] ) ) {
+			$this->io->error( 'Unable to fetch list of installed extensions.' );
+			return Command::FAILURE;
+		}
+		$installedExtensions = $siteInfo['query']['extensions'];
 
 		// Put it all together and output.
 		$out = [];
