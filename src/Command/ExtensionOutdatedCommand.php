@@ -100,6 +100,13 @@ class ExtensionOutdatedCommand extends CommandBase {
 			$this->io->error( "Unable to decode JSON in $extJsonFilename" );
 			return null;
 		}
-		return $extData;
+
+		// Reindex by name, because only the name is available from the wiki and not the short name.
+		$extsAll = [];
+		foreach ( $extData as $ext ) {
+			$extsAll[$ext['name']] = $ext;
+		}
+
+		return $extsAll;
 	}
 }
