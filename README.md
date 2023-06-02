@@ -3,7 +3,7 @@ MediaWiki CLI
 
 A command line client for [MediaWiki](https://www.mediawiki.org/) wikis.
 
-[![CircleCI](https://circleci.com/gh/samwilson/mwcli.svg)](https://circleci.com/gh/samwilson/mwcli)
+[![CI](https://github.com/samwilson/mwcli/actions/workflows/ci.yml/badge.svg)](https://github.com/samwilson/mwcli/actions/workflows/ci.yml)
 
 ## About
 
