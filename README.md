@@ -93,6 +93,21 @@ Export a user's contributions.
   Default: '[CWD]/contribs'
 * `--only-author` `-o` — Export only where the given user is the original author of a page.
 
+### export:wikitext
+
+Export a wiki's pages as text files.
+
+    export:wikitext [-c|--config [CONFIG]] [-w|--wiki WIKI] [-d|--dest DEST] [-e|--ext EXT]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+* `--dest` `-d` — The destination directory for exported files.
+  Default: '[CWD]/wikitext'
+* `--ext` `-e` — File extension to use for the exported files.
+  Default: 'txt'
+
 ### extension:install
 
 Install an extension into a local wiki. Requires 'install_path' to be set in a site's config.

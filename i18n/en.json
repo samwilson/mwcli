@@ -22,6 +22,9 @@
   "export-contribs-title": "Exporting title $1",
   "option-only-author-desc": "Export only where the given user is the original author of a page.",
 
+  "command-export-wikitext-desc": "Export a wiki's pages as text files.",
+  "option-ext-desc": "File extension to use for the exported files.",
+
   "command-upload-files-desc": "Upload local files to a wiki.",
   "arg-files-desc": "Filenames of files to upload.",
   "ask-login-username": "Enter your bot username (e.g. YourName@mwcli):",
