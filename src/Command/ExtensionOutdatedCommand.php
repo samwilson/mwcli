@@ -58,10 +58,11 @@ class ExtensionOutdatedCommand extends CommandBase {
 			}
 			$verLatest = $extsAll[$extName]['version'] ?? null;
 			$verInstalled = $installedExtension['version'] ?? null;
+			$vcsVersion = isset( $installedExtension['vcs-version'] ) ? substr( $installedExtension['vcs-version'], 0, 7 ) : null;
 			$style = version_compare( $verLatest, $verInstalled, '>' ) ? 'error' : 'info';
 			$out[$extName] = [
 				$extName,
-				$verInstalled,
+				trim( $verInstalled . ( $vcsVersion ? " ($vcsVersion)" : '' ) ),
 				"<$style>$verLatest</$style>"
 			];
 		}
