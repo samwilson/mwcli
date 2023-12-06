@@ -20,4 +20,9 @@
     <logging>
         <log type="coverage-clover" target="build/phpunit_clover.xml" />
     </logging>
+    <php>
+        <env name="MWCLI_DBNAME" value="" />
+        <env name="MWCLI_DBUSER" value="" />
+        <env name="MWCLI_DBPASS" value="" />
+    </php>
 </phpunit>
