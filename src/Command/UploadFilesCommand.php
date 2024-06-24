@@ -2,6 +2,7 @@
 
 namespace Samwilson\MediaWikiCLI\Command;
 
+use Addwiki\Mediawiki\Api\Client\Action\Exception\UsageException;
 use Addwiki\Mediawiki\Api\Client\Action\Request\ActionRequest;
 use Addwiki\Mediawiki\Api\Service\FileUploader;
 use Symfony\Component\Console\Command\Command;
@@ -39,6 +40,7 @@ class UploadFilesCommand extends CommandBase {
 		$api = $this->getApi( $site, $this->getAuthMethod( $input ) );
 		$uploader = new FileUploader( $api );
 
+		sort( $files );
 		foreach ( $files as $file ) {
 			$filePath = realpath( $file );
 			if ( !is_file( $filePath ) ) {
@@ -74,7 +76,12 @@ class UploadFilesCommand extends CommandBase {
 			// Upload.
 			$pageText = '';
 			$comment = $input->getOption( 'comment' );
-			$uploaded = $uploader->upload( $fileTitle, $file, $pageText, $comment );
+			try {
+				$uploaded = $uploader->upload( $fileTitle, $file, $pageText, $comment );
+			} catch ( UsageException $e ) {
+				$this->io->error( 'Unable to upload ' . $filePath );
+				throw $e;
+			}
 			if ( $uploaded ) {
 				$this->io->success( $this->msg( 'file-uploaded-successfully', [ $filenameExistsInfo['canonicalurl'] ] ) );
 			}
