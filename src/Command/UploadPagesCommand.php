@@ -105,7 +105,8 @@ class UploadPagesCommand extends CommandBase {
 	public function import( $dir ) {
 		$topLevel = new DirectoryIterator( $dir );
 		foreach ( $topLevel as $file ) {
-			if ( $file->isDot() ) {
+			if ( $file->isDot() || str_starts_with( $file->getFilename(), '.' ) ) {
+				$this->io->writeln( 'Ignoring ' . $file->getPathname() );
 				continue;
 			}
 			if ( $file->isDir() ) {
@@ -155,9 +156,8 @@ class UploadPagesCommand extends CommandBase {
 		try {
 			$result = $this->api->request( ActionRequest::simplePost( 'edit', $editParams ) );
 		} catch ( Exception $exception ) {
-			// Show the error, but carry on with other pages.
-			$this->io->error( $pageTitle . ' ' . $exception->getMessage() );
-			return;
+			$this->io->error( "Failed to upload $filename to $pageTitle" );
+			throw $exception;
 		}
 		if ( $result['edit']['result'] !== 'Success' ) {
 			$this->io->warning( $result['edit']['result'] );
