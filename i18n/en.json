@@ -29,6 +29,7 @@
   "arg-files-desc": "Filenames of files to upload.",
   "ask-login-username": "Enter your bot username (e.g. YourName@mwcli):",
   "ask-login-password": "Enter your bot password:",
+  "files-missing": "Please provide the '<files>...' argument (a list of files to upload).",
   "not-a-file": "Unable to upload non-file: $1",
   "option-comment-desc": "Revision comment.",
   "file-exists": "File already exists: $1",

@@ -84,6 +84,9 @@ class UploadFilesCommand extends CommandBase {
 			}
 			if ( $uploaded ) {
 				$this->io->success( $this->msg( 'file-uploaded-successfully', [ $filenameExistsInfo['canonicalurl'] ] ) );
+			} else {
+				// @todo After https://github.com/addwiki/addwiki/issues/86 is fixed, report actual issue.
+				$this->io->error( 'Unable to upload ' . $filePath );
 			}
 		}
 		return Command::SUCCESS;
