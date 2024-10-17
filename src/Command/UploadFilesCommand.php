@@ -40,7 +40,6 @@ class UploadFilesCommand extends CommandBase {
 		$api = $this->getApi( $site, $this->getAuthMethod( $input ) );
 		$uploader = new FileUploader( $api );
 
-		sort( $files );
 		foreach ( $files as $file ) {
 			$filePath = realpath( $file );
 			if ( !is_file( $filePath ) ) {
