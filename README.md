@@ -77,6 +77,21 @@ Remove a site from the config file.
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 
+### export:category
+
+Export pages and files in a category (and its subcategories).
+
+    export:category [-c|--config [CONFIG]] [-w|--wiki WIKI] [-a|--category CATEGORY] [-d|--dest DEST]
+
+* `--config` `-c` — Path of the Yaml config file to use.
+  Default: '[CWD]/config.yml'
+* `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
+  *Required.*
+* `--category` `-a` — Name of the category to export (with or without the leading 'Category:', and in any language).
+  *Required.*
+* `--dest` `-d` — The destination directory for exported files.
+  Default: '[CWD]/categories'
+
 ### export:contribs
 
 Export a user's contributions.
