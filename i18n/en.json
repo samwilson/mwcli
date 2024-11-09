@@ -15,6 +15,10 @@
   "option-wiki-desc": "The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.",
   "option-wiki-missing": "Please specify a wiki with the `--wiki` option.",
 
+  "command-export-category-desc": "Export pages and files in a category (and its subcategories).",
+  "option-category-desc": "Name of the category to export (with or without the leading 'Category:', and in any language).",
+  "export-cat-not-found": "Category not found: $1",
+
   "command-export-contribs-desc": "Export a user's contributions.",
   "option-dest-desc": "The destination directory for exported files.",
   "option-user-desc": "Export contributions of this username.",
