@@ -81,7 +81,7 @@ Remove a site from the config file.
 
 Export pages and files in a category (and its subcategories).
 
-    export:category [-c|--config [CONFIG]] [-w|--wiki WIKI] [-a|--category CATEGORY] [-d|--dest DEST] [-o|--only-author]
+    export:category [-c|--config [CONFIG]] [-w|--wiki WIKI] [-a|--category CATEGORY] [-d|--dest DEST]
 
 * `--config` `-c` — Path of the Yaml config file to use.
   Default: '[CWD]/config.yml'
@@ -91,7 +91,6 @@ Export pages and files in a category (and its subcategories).
   *Required.*
 * `--dest` `-d` — The destination directory for exported files.
   Default: '[CWD]/categories'
-* `--only-author` `-o` — Export only where the given user is the original author of a page.
 
 ### export:contribs
 
