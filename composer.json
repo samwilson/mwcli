@@ -22,12 +22,15 @@
   },
   "config": {
     "platform": {
-      "php": "7.4"
+      "php": "8.1"
     },
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
   },
   "require": {
-    "addwiki/addwiki": "dev-main",
+    "addwiki/mediawiki-api": "^3.1",
     "dnoegel/php-xdg-base-dir": "^0.1",
     "krinkle/intuition": "^2.0",
     "monolog/monolog": "^2.1",
@@ -40,7 +43,7 @@
   },
   "require-dev": {
     "php-parallel-lint/php-parallel-lint": "^1.0",
-    "mediawiki/mediawiki-codesniffer": "^39.0",
+    "mediawiki/mediawiki-codesniffer": "^45",
     "mediawiki/minus-x": "^1.0",
     "phpunit/phpunit": "^8.2",
     "symfony/var-dumper": "^4.3|^5.0"
