@@ -45,7 +45,7 @@
     "php-parallel-lint/php-parallel-lint": "^1.0",
     "mediawiki/mediawiki-codesniffer": "^45",
     "mediawiki/minus-x": "^1.0",
-    "phpunit/phpunit": "^8.2",
+    "phpunit/phpunit": "^10.5",
     "symfony/var-dumper": "^4.3|^5.0"
   },
   "scripts": {
