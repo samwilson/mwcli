@@ -4,6 +4,8 @@ namespace Samwilson\MediaWikiCLI\Command;
 
 use Addwiki\Mediawiki\Api\Client\Action\Request\ActionRequest;
 use Addwiki\Mediawiki\Api\Client\MediaWiki;
+use Addwiki\Mediawiki\Api\Client\RsdException;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,8 +25,12 @@ class SitesAddCommand extends CommandBase {
 		if ( !$url ) {
 			$url = $this->io->ask( $this->msg( 'sites-add-ask-url' ) );
 		}
-		/** @var Aci */
-		$api = MediaWiki::newFromPage( $url );
+		try {
+			$api = MediaWiki::newFromPage( $url );
+		} catch ( RsdException $e ) {
+			$this->io->error( $e->getMessage() );
+			return Command::FAILURE;
+		}
 		$siteinfoReq = ActionRequest::simpleGet( 'query', [ 'meta' => 'siteinfo' ] );
 		$siteInfo = $api->action()->request( $siteinfoReq );
 
@@ -36,6 +42,6 @@ class SitesAddCommand extends CommandBase {
 		$this->setSite( $input, $siteInfo['query']['general']['wikiid'], $newSite );
 
 		$this->io->block( $this->msg( 'sites-add-added', [ $newSite['name'], $newSite['main_page_url'] ] ) );
-		return 0;
+		return Command::SUCCESS;
 	}
 }

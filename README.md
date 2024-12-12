@@ -21,17 +21,33 @@ or via commands such as `sites:add` and `sites:modify`.
 ## Installation
 
 1. Clone the repository:
-
-       git clone https://github.com/samwilson/mwcli
+   ```console
+   git clone https://github.com/samwilson/mwcli
+   ```
 
 2. Install dependencies:
+   ```console
+   cd mwcli
+   composer install --no-dev
+   ```
 
-       cd mwcli
-       composer install --no-dev
+3. Optionally add `mwcli` to your $PATH. For example, on Linux:
+   ```console
+   echo 'export PATH=$PATH:'$(pwd)/bin >> ~/.profile
+   ```
 
-3. Optionally add `mwcli` to your path:
+## Upgrading
 
-       echo 'export PATH=$PATH:'$(pwd)/bin >> ~/.profile
+1. Update the code:
+   ```console
+   cd mwcli
+   git pull origin main
+   ```
+
+2. Update dependencies:
+   ```console
+   composer install --no-dev
+   ```
 
 ## Usage
 

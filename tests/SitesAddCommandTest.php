@@ -24,7 +24,7 @@ class SitesAddCommandTest extends TestCase {
 		unlink( $configFile );
 	}
 
-	public function provideAddSite() {
+	public static function provideAddSite() {
 		return [
 			[ 'config.yml' ],
 			[ 'foobar.yaml' ]
