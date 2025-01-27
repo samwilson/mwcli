@@ -4,3 +4,4 @@
 /contribs/
 /.phpunit.result.cache
 /build/
+/website/mwcli.phar

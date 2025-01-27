@@ -18,7 +18,7 @@ use Samwilson\MediaWikiCLI\Command\UploadFilesCommand;
 use Samwilson\MediaWikiCLI\Command\UploadPagesCommand;
 use Symfony\Component\Console\Application;
 
-$application = new Application( 'mwcli', '1.3.0' );
+$application = new Application( 'mwcli', '@git-tag@' );
 $application->add(new SitesAddCommand());
 $application->add(new SitesInfoCommand());
 $application->add(new SitesListCommand());

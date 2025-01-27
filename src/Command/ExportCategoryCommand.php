@@ -31,7 +31,7 @@ class ExportCategoryCommand extends CommandBase {
 		$this->addOption( 'wiki', 'w', InputOption::VALUE_REQUIRED, $this->msg( 'option-wiki-desc' ) );
 		$this->addOption( 'category', 'a', InputOption::VALUE_REQUIRED, $this->msg( 'option-category-desc' ) );
 		$this->addOption( 'dest', 'd', InputOption::VALUE_REQUIRED, $this->msg( 'option-dest-desc' ),
-			$this->getConfigDirDefault() . 'categories' );
+			getcwd() . '/categories' );
 	}
 
 	public function execute( InputInterface $input, OutputInterface $output ) {

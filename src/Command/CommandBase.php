@@ -17,6 +17,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Yaml\Yaml;
+use XdgBaseDir\Xdg;
 
 abstract class CommandBase extends Command {
 
@@ -29,12 +30,14 @@ abstract class CommandBase extends Command {
 	/** @var LoggerInterface */
 	protected $logger;
 
+	/** @var mixed|null Runtime config of the config file's data. */
+	private $config;
+
 	public function configure() {
 		// Set up i18n.
 		$this->intuition = new Intuition( 'mwcli' );
 		$this->intuition->registerDomain( 'mwcli', dirname( __DIR__, 2 ) . '/i18n' );
-
-		$default = $this->getConfigDirDefault() . 'config.yml';
+		$default = ( new Xdg() )->getHomeConfigDir() . '/mwcli/config.yml';
 		$this->addOption( 'config', 'c', InputOption::VALUE_OPTIONAL, $this->msg( 'option-config-desc' ), $default );
 	}
 
@@ -77,26 +80,21 @@ abstract class CommandBase extends Command {
 	}
 
 	/**
-	 * Get the default config directory (the root directory of mwcli).
-	 * @return string The full filesystem path, always with a trailing slash.
-	 */
-	protected function getConfigDirDefault(): string {
-		return rtrim( dirname( __DIR__, 2 ), DIRECTORY_SEPARATOR ) . DIRECTORY_SEPARATOR;
-	}
-
-	/**
 	 * @param InputInterface $input
-	 * @return mixed[][]
+	 * @return mixed
 	 */
 	protected function getConfig( InputInterface $input ): array {
+		if ( $this->config ) {
+			return $this->config;
+		}
 		$configPath = $input->getOption( 'config' );
 		if ( !file_exists( $configPath ) ) {
 			// Create an empty config file.
 			$this->saveConfig( $input, [] );
 		}
 		$this->io->block( $this->msg( 'using-config', [ $configPath ] ) );
-		$config = Yaml::parseFile( $configPath );
-		return $config;
+		$this->config = Yaml::parseFile( $configPath );
+		return $this->config;
 	}
 
 	/**
@@ -106,8 +104,12 @@ abstract class CommandBase extends Command {
 	 */
 	protected function saveConfig( InputInterface $input, array $config ): void {
 		$configPath = $input->getOption( 'config' );
+		if ( !file_exists( dirname( $configPath ) ) ) {
+			mkdir( dirname( $configPath ), 0700, true );
+		}
 		file_put_contents( $configPath, Yaml::dump( $config, 3 ) );
 		$this->io->success( $this->msg( 'saved-config', [ $configPath ] ) );
+		$this->config = null;
 	}
 
 	protected function getApi( array $siteInfo, ?AuthMethod $authMethod = null ): ActionApi {
