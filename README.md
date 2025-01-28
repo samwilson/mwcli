@@ -1,3 +1,5 @@
+> :warning: **This project has moved** to Wikimedia's GitLab, it can be found at https://gitlab.wikimedia.org/toolforge-repos/mwcli
+
 MediaWiki CLI
 =============
 
