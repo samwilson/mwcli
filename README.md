@@ -58,7 +58,7 @@ Add a new site to the config file.
     sites:add [-c|--config [CONFIG]] [--url URL]
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--url` — The URL of the wiki. Can be to any page or even api.php.
   *Required.*
 
@@ -69,7 +69,7 @@ Get general information about a wiki.
     sites:info [-c|--config [CONFIG]] [-w|--wiki WIKI]
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 
@@ -80,7 +80,7 @@ List all configured sites.
     sites:list [-c|--config [CONFIG]]
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 
 ### sites:remove
 
@@ -89,7 +89,7 @@ Remove a site from the config file.
     sites:remove [-c|--config [CONFIG]] [-w|--wiki WIKI]
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 
@@ -100,7 +100,7 @@ Export pages and files in a category (and its subcategories).
     export:category [-c|--config [CONFIG]] [-w|--wiki WIKI] [-a|--category CATEGORY] [-d|--dest DEST]
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 * `--category` `-a` — Name of the category to export (with or without the leading 'Category:', and in any language).
@@ -115,7 +115,7 @@ Export a user's contributions.
     export:contribs [-c|--config [CONFIG]] [-w|--wiki WIKI] [-u|--user USER] [-d|--dest DEST] [-o|--only-author]
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 * `--user` `-u` — Export contributions of this username.
@@ -131,7 +131,7 @@ Export a wiki's pages as text files.
     export:wikitext [-c|--config [CONFIG]] [-w|--wiki WIKI] [-d|--dest DEST] [-e|--ext EXT]
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 * `--dest` `-d` — The destination directory for exported files.
@@ -146,7 +146,7 @@ Install an extension into a local wiki. Requires 'install_path' to be set in a s
     extension:install [-c|--config [CONFIG]] [-w|--wiki WIKI] [-g|--git] [-u|--gituser GITUSER] [--] <extension-name>
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 * `--git` `-g` — Use Git to install the extension, instead of the default tarball method.
@@ -161,7 +161,7 @@ Shows a list of installed extensions that have updates available, including thei
     extension:outdated [-c|--config [CONFIG]] [-w|--wiki WIKI]
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 
@@ -172,7 +172,7 @@ Upload local files to a wiki.
     upload:files [-c|--config [CONFIG]] [-w|--wiki WIKI] [-m|--comment COMMENT] [--] [<files>...]
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 * `--comment` `-m` — Revision comment.
@@ -186,7 +186,7 @@ Upload local text files as wiki pages.
     upload:pages [-c|--config [CONFIG]] [-w|--wiki WIKI] [-m|--comment [COMMENT]] [-t|--watch] [--] <pages-dir>
 
 * `--config` `-c` — Path of the Yaml config file to use.
-  Default: '/home/sam/.config/mwcli/config.yml'
+  Default: '[CONFIG]/mwcli/config.yml'
 * `--wiki` `-w` — The mwcli name of the wiki to use. Use <info>sites:list</info> to list all.
   *Required.*
 * `--comment` `-m` — Revision comment.
