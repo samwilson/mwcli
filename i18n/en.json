@@ -2,6 +2,7 @@
   "using-config": "Using config file $1",
   "option-config-desc": "Path of the Yaml config file to use.",
   "saved-config": "Configuration file saved.",
+  "old-config-exists": "A config file exists at $1 that you may wish to move to $2",
 
   "command-sites-add-desc": "Add a new site to the config file.",
   "command-sites-list-desc": "List all configured sites.",

@@ -88,6 +88,15 @@ abstract class CommandBase extends Command {
 			return $this->config;
 		}
 		$configPath = $input->getOption( 'config' );
+
+		// Backwards compatibility check: if there's a config.yaml file in the
+		// current directory, tell the user. It may not actually be an mwcli one
+		// so we don't try to move it ourselves.
+		$cwdConfig = getcwd() . '/config.yml';
+		if ( file_exists( $cwdConfig ) ) {
+			$this->io->warning( $this->msg( 'old-config-exists', [ $cwdConfig, $configPath ] ) );
+		}
+
 		if ( !file_exists( $configPath ) ) {
 			// Create an empty config file.
 			$this->saveConfig( $input, [] );
@@ -109,6 +118,7 @@ abstract class CommandBase extends Command {
 		}
 		file_put_contents( $configPath, Yaml::dump( $config, 3 ) );
 		$this->io->success( $this->msg( 'saved-config', [ $configPath ] ) );
+		// Set the runtime cache to null so it will be refreshed next time the config is accessed.
 		$this->config = null;
 	}
 
