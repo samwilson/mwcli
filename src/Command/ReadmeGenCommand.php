@@ -4,6 +4,7 @@ namespace Samwilson\MediaWikiCLI\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use XdgBaseDir\Xdg;
 
 class ReadmeGenCommand extends CommandBase {
 
@@ -38,7 +39,24 @@ class ReadmeGenCommand extends CommandBase {
 		}
 
 		// Remove local paths.
-		$commandInfo = str_replace( getcwd(), '[CWD]', $commandInfo );
+		$xdg = new Xdg();
+		$commandInfo = str_replace(
+			[
+				getcwd(),
+				$xdg->getHomeCacheDir(),
+				$xdg->getHomeConfigDir(),
+				$xdg->getHomeDataDir(),
+				$xdg->getHomeDir(),
+			],
+			[
+				'[CWD]',
+				'[CACHE]',
+				'[CONFIG]',
+				'[DATA]',
+				'[HOME]',
+			],
+			$commandInfo
+		);
 
 		// Write new contents to README.md.
 		$readmePath = dirname( __DIR__, 2 ) . '/README.md';

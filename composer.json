@@ -55,6 +55,9 @@
       "minus-x check .",
       "./bin/mwcli readme",
       "phpunit"
+    ],
+    "build": [
+      "box compile"
     ]
   }
 }

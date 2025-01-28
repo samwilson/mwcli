@@ -1,0 +1,33 @@
+{
+    "output": "website/mwcli.phar",
+    "compression": "GZ",
+    "git-tag": "git-tag",
+    "directories": [
+        "src/",
+        "i18n/"
+    ],
+    "finder": [
+        {
+            "in": "vendor",
+            "name": "*.php",
+            "exclude": [
+                "CHANGELOG",
+                "CONTRIBUTING",
+                "README",
+                "Tests",
+                "behat",
+                "ext",
+                "bin",
+                "build",
+                "doc",
+                "docs",
+                "doc-template",
+                "fixtures",
+                "test",
+                "tests",
+                "test_old",
+                "vendor-bin"
+            ]
+        }
+    ]
+}

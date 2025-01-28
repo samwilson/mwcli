@@ -27,7 +27,7 @@ class ExportWikitextCommand extends CommandBase {
 		$this->setDescription( $this->msg( 'command-export-wikitext-desc' ) );
 		$this->addOption( 'wiki', 'w', InputOption::VALUE_REQUIRED, $this->msg( 'option-wiki-desc' ) );
 		$this->addOption( 'dest', 'd', InputOption::VALUE_REQUIRED, $this->msg( 'option-dest-desc' ),
-			$this->getConfigDirDefault() . 'wikitext' );
+			getcwd() . '/wikitext' );
 		$this->addOption( 'ext', 'e', InputOption::VALUE_REQUIRED, $this->msg( 'option-ext-desc' ), 'txt' );
 	}
 
